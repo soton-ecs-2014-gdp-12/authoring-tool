@@ -1,0 +1,6 @@
+.idea
+*~
+!.gitkeep
+tmp
+.DS_Store
+*.log
