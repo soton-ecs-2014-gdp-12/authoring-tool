@@ -5,11 +5,11 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/authoring', {
     templateUrl: 'authoring/authoring.html',
-    controller: 'AuthoringCtrl'
+    controller: 'AccordionDemoCtrl'
   });
-}])
+}]);
 
-.controller('AuthoringCtrl', [function ($scope,$sce) {
+angular.module('authoringTool').controller('AccordionDemoCtrl', function ($scope) {
   $scope.oneAtATime = true;
 
   $scope.groups = [
@@ -28,10 +28,22 @@ angular.module('authoringTool.authoring', ['ngRoute'])
   $scope.addItem = function() {
     var newItemNo = $scope.items.length + 1;
     $scope.items.push('Item ' + newItemNo);
-  };
+  }
 
   $scope.status = {
     isFirstOpen: true,
     isFirstDisabled: false
   };
-}]);
+});
+
+angular.module('authoringTool').controller('ButtonsCtrl', function ($scope) {
+  $scope.singleModel = 1;
+
+  $scope.radioModel = 'Middle';
+
+  $scope.checkModel = {
+    left: false,
+    middle: true,
+    right: false
+  };
+});
