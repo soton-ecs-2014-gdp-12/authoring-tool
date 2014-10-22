@@ -34,4 +34,4 @@ angular.module('authoringTool.authoring', ['ngRoute'])
     isFirstOpen: true,
     isFirstDisabled: false
   };
-});
+}]);
