@@ -1,12 +1,13 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+angular.module('authoringTool', [
   'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
+  'authoringTool.authoring',
+  'authoringTool.version',
+  'ui.bootstrap'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/authoring'});
 }]);
+
