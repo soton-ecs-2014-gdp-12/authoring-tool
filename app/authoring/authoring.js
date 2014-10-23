@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock'])
+angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock','authoringTool.authoring.questionBlock'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/authoring', {
     templateUrl: 'authoring/authoring.html',
@@ -50,6 +50,17 @@ angular.module('authoringTool.authoring.defaultOptionsBlock',[])
 	return{
 		restrict: 'E',
     	templateUrl: 'authoring/defaultOptions.html',
+		scope: {
+    	  heading: '@'
+		},
+	};
+});
+
+angular.module('authoringTool.authoring.questionBlock',[])
+.directive('questionBlock', function(){
+	return{
+		restrict: 'E',
+    	templateUrl: 'authoring/questionBlock.html',
 		scope: {
     	  heading: '@'
 		},

@@ -69,21 +69,8 @@
     			<div ng-controller="AccordionCtrl">
 					<accordion>
 						<default-options-block heading="Video Default Options"></default-options-block>
-						<accordion-group>
-							 <accordion-heading>
-            					Question 1 
-								<button type="button" class="btn btn-default">Move Up</button> <button type="button" class="btn btn-default">Move Down</button>
-        					</accordion-heading>
-							<label for="question1">Question:</label>
-    						<input type="text" class="form-control" id="question1" placeholder="Enter question">
-							<label for="type1">Question type:</label>
-							<select class="form-control" id="type1">
-  								<option>Single Choice Question</option>
-  								<option>Multiple Choice Question</option>
-  								<option>Rating</option>
-  								<option>Matching Pairs</option>
-							</select>
-						</accordion-group>
+						<question-block heading="Question 1"></question-block>
+						<question-block heading="Question 2"></question-block>
   					</accordion>
 				</div>
 			</div>
