@@ -33,14 +33,16 @@
 			<button type="button" class="btn btn-default">Add Question Set</button>
 			<div class="panel">
 				<strong>Question set start time:</strong>
-				<time-choose></time-choose>
-				<button type="button" class="btn btn-default">Add New Poll</button>
-				<button type="button" class="btn btn-default">Add New Question</button>
+				<time-choose></time-choose>	
     			<div ng-controller="AccordionCtrl">
 					<accordion>
 						<default-options-block heading="Video Default Options"></default-options-block>
-						<question-block heading="Question 1"></question-block>
-						<question-block heading="Question 2"></question-block>
+						<div ng-controller="SectionAddCtrl">
+							<button type="button" class="btn btn-default" ng-click=addPoll()>Add New Poll</button>
+							<button type="button" class="btn btn-default" ng-click=addQuestion()>Add New Question</button>
+							<question-block heading="{{question}}" ng-repeat="question in questions"> </question-block>
+							<poll-block heading="{{poll}}" ng-repeat="poll in polls"> </poll-block>
+						</div>
   					</accordion>
 				</div>
 			</div>
