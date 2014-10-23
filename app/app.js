@@ -3,9 +3,13 @@
 // Declare app level module which depends on views, and components
 angular.module('authoringTool', [
   'ngRoute',
+  'com.2fdevs.videogular',
+  'com.2fdevs.videogular.plugins.controls',
+  'uk.ac.soton.ecs.videogular.plugins.questions',
+  'uk.ac.soton.ecs.videogular.plugins.cuepoints',
+  'ui.bootstrap',
   'authoringTool.authoring',
-  'authoringTool.version',
-  'ui.bootstrap'
+  'authoringTool.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/authoring'});

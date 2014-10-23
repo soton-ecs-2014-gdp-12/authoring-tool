@@ -1,8 +1,7 @@
 {
-  "name": "angular-seed",
-  "description": "A starter project for AngularJS",
+  "name": "authoring-tool",
+  "description": "An Authoring Tool for Videogular Questions",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
   "license": "MIT",
   "private": true,
   "dependencies": {
@@ -11,6 +10,12 @@
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
     "html5-boilerplate": "~4.3.0",
+    "videogular": "~0.6.1",
+    "videogular-questions": "~0.2.0",
+    "angular-charts": "~0.2.6",
+    "videogular-controls": "~0.6.1",
+    "videogular-themes-default": "~0.6.1",
+    "jjv": "latest",
     "bootstrap": "~3.2.0",
 	"angular-bootstrap": "~0.11.2"
   }

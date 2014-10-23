@@ -2,6 +2,24 @@
 	<strong>Video URL:</strong> https://www.youtube.com/watch?v=EIyixC9NsLI
 	<div class="row">
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+			<div ng-controller="AuthoringVideoCtrl">
+				<videogular vg-theme="config.theme.url">
+					<vg-video vg-src="config.sources"></vg-video>
+					<vg-controls vg-autohide="config.autoHide" vg-autohide-time="config.autoHideTime">
+						<vg-play-pause-button></vg-play-pause-button>
+						<vg-scrubBar>
+							<vg-scrubBarCurrentTime></vg-scrubBarCurrentTime>
+							<vg-cuepoints vg-cuepoints-config="config.plugins.cuepoints" vg-cuepoints-theme="config.plugins.cuepoints.theme.url"></vg-cuepoints>
+						</vg-scrubBar>
+						<vg-timedisplay aria-label="Time left">{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
+						<vg-volume>
+							<vg-mutebutton></vg-mutebutton>
+							<vg-volumebar></vg-volumebar>
+						</vg-volume>
+						<vg-fullscreenButton></vg-fullscreenButton>
+					</vg-controls>
+				</videogular>
+			</div>
 			<div ng-controller="AccordionCtrl">
   				<accordion>
     				<accordion-group heading="Video Default Options">
@@ -42,7 +60,7 @@
 								</div>
 								Show responses:
 								<form>
-									<input type="radio" name="responses" value="afterEach">After each poll</input>
+									<input type="radio" name="responses" value="afterEach">After each poll</input><br/>
 									<input type="radio" name="responses" value="afterSet">After each question set</input>
 								</form> 
     						</accordion-group>
@@ -133,7 +151,7 @@
 									</div>
 									Show responses:
 									<form>
-										<input type="radio" name="responses" value="afterEach">After each poll</input>
+										<input type="radio" name="responses" value="afterEach">After each poll</input><br/>
 										<input type="radio" name="responses" value="afterSet">After each question set</input>
 									</form> 
     							</accordion-group>

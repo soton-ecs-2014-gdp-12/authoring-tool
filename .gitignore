@@ -11,3 +11,4 @@ tmp
 *.log
 .gitignore~
 *.json~
+*.sh~
