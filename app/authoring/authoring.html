@@ -21,54 +21,9 @@
 				</videogular>
 			</div>
 			<div ng-controller="AccordionCtrl">
-  				<accordion>
-    				<accordion-group heading="Video Default Options">
-						<!--default options -->
-						<accordion>
-							<accordion-group heading="Quizzes" is-open="status.isFirstOpen">
-      							<div class="checkbox">
-    								<label>
-      									<input type="checkbox"> Question can always be skipped </input>
-    								</label>
-								</div>
-								<div class="checkbox">
-									<label>
-      									<input type="checkbox"> Question can be skipped if answered correctly </input>
-    								</label>
-  								</div>
-								<div class="checkbox">
-									<label>
-      									<input type="checkbox"> If anwered incorrectly return to </input>
-    								</label>
-  								</div>
-								<div class="checkbox">
-									<label>
-      									<input type="checkbox"> Show correct answer once submitted </input>
-    								</label>
-  								</div>
-								<div class="checkbox">
-									<label>
-      									<input type="checkbox"> Notify user if they try to skip past a question </input>
-    								</label>
-  								</div>
-    						</accordion-group>
-							<accordion-group heading="Polls">
-      							<div class="checkbox">
-    								<label>
-      									<input type="checkbox"> Poll can always be skipped </input>
-    								</label>
-								</div>
-								Show responses:
-								<form>
-									<input type="radio" name="responses" value="afterEach">After each poll</input><br/>
-									<input type="radio" name="responses" value="afterSet">After each question set</input>
-								</form> 
-    						</accordion-group>
-							<button type="button" class="btn btn-default">Save Changes</button>
-    					</accordion>
-						<!--defaultOptions end -->
-					</accordion-group>
-  				</accordion>
+				<accordion>
+					<default-options-block heading="Video Default Options"></default-options-block>
+				<accordion>
 			</div>
 			<button type="button" class="btn btn-default btn-lg">Export Quiz</button>
 		</div>
@@ -112,53 +67,8 @@
 				<button type="button" class="btn btn-default">Add New Poll</button>
 				<button type="button" class="btn btn-default">Add New Question</button>
     			<div ng-controller="AccordionCtrl">
-  					<accordion>
-							<accordion-group heading="Question Set Default Options">
-								<!--default options -->
-								<accordion>
-								<accordion-group heading="Quizzes" is-open="status.isFirstOpen">
-      								<div class="checkbox">
-    									<label>
-      										<input type="checkbox"> Question can always be skipped </input>
-    									</label>
-									</div>
-									<div class="checkbox">
-										<label>
-      										<input type="checkbox"> Question can be skipped if answered correctly </input>
-    									</label>
-  									</div>
-									<div class="checkbox">
-										<label>
-      										<input type="checkbox"> If anwered incorrectly return to </input>
-    									</label>
-  									</div>
-									<div class="checkbox">
-										<label>
-      										<input type="checkbox"> Show correct answer once submitted </input>
-    									</label>
-  									</div>
-									<div class="checkbox">
-										<label>
-      										<input type="checkbox"> Notify user if they try to skip past a question </input>
-    									</label>
-  									</div>
-    							</accordion-group>
-								<accordion-group heading="Polls">
-      								<div class="checkbox">
-    									<label>
-      										<input type="checkbox"> Poll can always be skipped </input>
-    									</label>
-									</div>
-									Show responses:
-									<form>
-										<input type="radio" name="responses" value="afterEach">After each poll</input><br/>
-										<input type="radio" name="responses" value="afterSet">After each question set</input>
-									</form> 
-    							</accordion-group>
-								<button type="button" class="btn btn-default">Save Changes</button>
-    						</accordion>
-							<!--defaultOptions end -->
-						</accordion-group>
+					<accordion>
+						<default-options-block heading="Video Default Options"></default-options-block>
 						<accordion-group>
 							 <accordion-heading>
             					Question 1 

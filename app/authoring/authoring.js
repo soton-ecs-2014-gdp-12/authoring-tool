@@ -1,24 +1,23 @@
 'use strict';
 
-angular.module('authoringTool.authoring', ['ngRoute'])
-
+angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/authoring', {
     templateUrl: 'authoring/authoring.html',
     controller: 'AccordionCtrl'
   });
-}]);
+}])
 
-angular.module('authoringTool').controller('AccordionCtrl', function ($scope) {
+.controller('AccordionCtrl', function ($scope) {
   $scope.oneAtATime = true;
 
   $scope.status = {
     isFirstOpen: true,
     isFirstDisabled: false
   };
-});
+})
 
-angular.module('authoringTool').controller('AuthoringVideoCtrl', function($scope, $sce) {
+.controller('AuthoringVideoCtrl', function($scope, $sce) {
 	$scope.config = {
 		autoHide: false,
 		autoHideTime: 3000,
@@ -43,6 +42,17 @@ angular.module('authoringTool').controller('AuthoringVideoCtrl', function($scope
 				},
 			},
 		}
+	};
+});
+
+angular.module('authoringTool.authoring.defaultOptionsBlock',[])
+.directive('defaultOptionsBlock', function(){
+	return{
+		restrict: 'E',
+    	templateUrl: 'authoring/defaultOptions.html',
+		scope: {
+    	  heading: '@'
+		},
 	};
 });
 
