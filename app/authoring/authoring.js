@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock','authoringTool.authoring.questionBlock'])
+angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock','authoringTool.authoring.questionBlock','authoringTool.authoring.timeChoose'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/authoring', {
     templateUrl: 'authoring/authoring.html',
@@ -64,6 +64,14 @@ angular.module('authoringTool.authoring.questionBlock',[])
 		scope: {
     	  heading: '@'
 		},
+	};
+});
+
+angular.module('authoringTool.authoring.timeChoose',[])
+.directive('timeChoose', function(){
+	return{
+		restrict: 'E',
+		templateUrl: 'authoring/timeChoose.html'
 	};
 });
 
