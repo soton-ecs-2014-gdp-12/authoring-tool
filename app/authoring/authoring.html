@@ -23,28 +23,23 @@
 			<div ng-controller="AccordionCtrl">
 				<accordion>
 					<default-options-block heading="Video Default Options"></default-options-block>
-				<accordion>
+				</accordion>
 			</div>
 			<button type="button" class="btn btn-default btn-lg">Export Quiz</button>
 		</div>
-
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<button type="button" class="btn btn-default">Change Video</button>
-			<button type="button" class="btn btn-default">Add Question Set</button>
-			<div class="panel">
-				<strong>Question set start time:</strong>
-				<time-choose></time-choose>	
-    			<div ng-controller="AccordionCtrl">
-					<accordion>
-						<default-options-block heading="Video Default Options"></default-options-block>
-						<div ng-controller="SectionAddCtrl">
-							<button type="button" class="btn btn-default" ng-click=addPoll()>Add New Poll</button>
-							<button type="button" class="btn btn-default" ng-click=addQuestion()>Add New Question</button>
-							<question-block heading="{{question}}" ng-repeat="question in questions"> </question-block>
-							<poll-block heading="{{poll}}" ng-repeat="poll in polls"> </poll-block>
-						</div>
-  					</accordion>
-				</div>
+			<div ng-controller="AccordionCtrl">
+				<accordion>	
+					<accordion-group heading="Change Video" is-open="status.isFirstOpen">
+						<label for="vidUrl">Video URL:</label>
+    					<input type="text" class="form-control" id="vidUrl" placeholder="Enter URL" />
+						<button type="button" class="btn btn-default">Apply Changes</button>
+					</accordion-group>
+					<div ng-controller="SetAddCtrl">
+						<button type="button" class="btn btn-default" ng-click="addQuestionSet()">Add Question Set</button>
+						<question-set heading="{{set}}" ng-repeat="set in sets"> </question-set>
+					</div>
+				</accordion>
 			</div>
 		</div>
 	</div>

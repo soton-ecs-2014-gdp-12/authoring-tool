@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock','authoringTool.authoring.questionBlock','authoringTool.authoring.pollBlock','authoringTool.authoring.timeChoose'])
+angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock','authoringTool.authoring.questionSet'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/authoring', {
     templateUrl: 'authoring/authoring.html',
@@ -45,6 +45,29 @@ angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.de
 	};
 })
 
+.controller('SetAddCtrl',  function ($scope){
+	$scope.sets = ['Question Set 1'];
+
+	$scope.addQuestionSet = function() {
+   		var newSetNo = $scope.sets.length + 1;
+    	$scope.sets.push('Question Set ' + newSetNo)
+  	};
+
+})
+
+angular.module('authoringTool.authoring.defaultOptionsBlock',[])
+.directive('defaultOptionsBlock', function(){
+	return{
+		restrict: 'E',
+    	templateUrl: 'authoring/defaultOptions.html',
+		scope: {
+    	  heading: '@'
+		},
+	};
+});
+
+angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.questionSet.questionBlock','authoringTool.authoring.questionSet.pollBlock','authoringTool.authoring.questionSet.timeChoose'])
+
 .controller('SectionAddCtrl',  function ($scope){
 	$scope.polls = ['Poll 1'];
 	$scope.questions = ['Question 1', 'Question 2'];
@@ -59,23 +82,23 @@ angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.de
     	$scope.questions.push('Question ' + newQuestionNo)
   	};
 
-});
+})
 
-angular.module('authoringTool.authoring.defaultOptionsBlock',[])
-.directive('defaultOptionsBlock', function(){
+.directive('questionSet', function(){
 	return{
 		restrict: 'E',
-    	templateUrl: 'authoring/defaultOptions.html',
+    	templateUrl: 'authoring/questionSet.html',
 		scope: {
     	  heading: '@'
 		},
 	};
 });
 
-angular.module('authoringTool.authoring.questionBlock',[])
+angular.module('authoringTool.authoring.questionSet.questionBlock',[])
 .directive('questionBlock', function(){
 	return{
 		restrict: 'E',
+		require: '^questionSet',
     	templateUrl: 'authoring/questionBlock.html',
 		scope: {
     	  heading: '@'
@@ -83,10 +106,11 @@ angular.module('authoringTool.authoring.questionBlock',[])
 	};
 });
 
-angular.module('authoringTool.authoring.pollBlock',[])
+angular.module('authoringTool.authoring.questionSet.pollBlock',[])
 .directive('pollBlock', function(){
 	return{
 		restrict: 'E',
+		require: '^questionSet',
     	templateUrl: 'authoring/pollBlock.html',
 		scope: {
     	  heading: '@'
@@ -94,10 +118,11 @@ angular.module('authoringTool.authoring.pollBlock',[])
 	};
 });
 
-angular.module('authoringTool.authoring.timeChoose',[])
+angular.module('authoringTool.authoring.questionSet.timeChoose',[])
 .directive('timeChoose', function(){
 	return{
 		restrict: 'E',
+		require: '^questionSet',
 		templateUrl: 'authoring/timeChoose.html'
 	};
 });

@@ -1,10 +1,15 @@
 <accordion-group>
 	<accordion-heading>
-		{{heading}}
-		<button type="button" class="btn btn-default">Move Up</button> <button type="button" class="btn btn-default">Move Down</button>
+		<div class="clearfix">
+			{{heading}} 
+			<div class="btn-group pull-right">
+				<button type="button" class="btn btn-default btn-sm"><span class= "glyphicon glyphicon-arrow-up"></span></button>
+				<button type="button" class="btn btn-default btn-sm"><span class= "glyphicon glyphicon-arrow-down"></span></button>
+			</div>
+		</div>
     </accordion-heading>
 	<label for="question1">Question:</label>
-    	<input type="text" class="form-control" id="question1" placeholder="Enter question">
+    	<input type="text" class="form-control" id="question1" placeholder="Enter question" />
 	<label for="type1">Question type:</label>
 	<select class="form-control" id="type1">
   		<option>Single Choice Question</option>
