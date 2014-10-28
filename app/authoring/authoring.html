@@ -37,7 +37,11 @@
 					</accordion-group>
 					<div ng-controller="SetAddCtrl">
 						<button type="button" class="btn btn-default" ng-click="addQuestionSet()">Add Question Set</button>
-						<question-set heading="{{set}}" ng-repeat="set in sets"> </question-set>
+						<div class="panel panel-default">
+							<div class="panel panel-body">
+								<question-set heading="{{set}}" ng-repeat="set in sets"> </question-set>
+							</div>
+						</div>
 					</div>
 				</accordion>
 			</div>
