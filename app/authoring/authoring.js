@@ -104,6 +104,11 @@ angular.module('authoringTool.authoring.questionSet.questionBlock',[])
     		heading: '@',
 			type: '@'
 		},
+		controller: ['$scope', function($scope) {
+      		this.getType = function() {
+        		return $scope.type;
+     	 	}
+    	}]
 	};
 });
 
@@ -116,19 +121,26 @@ angular.module('authoringTool.authoring.questionSet.timeChoose',[])
 	};
 });
 
-angular.module('authoringTool.authoring.answerPanel',['authoringTool.authoring.answerPanel.single','authoringTool.authoring.answerPanel.multiple','authoringTool.authoring.answerPanel.stars','authoringTool.authoring.answerPanel.pairs']);
+angular.module('authoringTool.authoring.answerPanel',['authoringTool.authoring.answerPanel.multiple','authoringTool.authoring.answerPanel.stars','authoringTool.authoring.answerPanel.pairs']);
 
-angular.module('authoringTool.authoring.answerPanel.single',[])
-.directive('singleChoice', function(){
+angular.module('authoringTool.authoring.answerPanel.multiple',[])
+.directive('multipleChoice', function(){
 	return{
 		restrict: 'E',
 		require: '^questionBlock',
-		templateUrl: 'authoring/answerPanel/singleChoice.html',
+		templateUrl: 'authoring/answerPanel/multipleChoice.html',
+		scope: {
+			single: '@'
+		},
+		link: function(scope, element, attrs, ctrl) {
+			scope.type = ctrl.getType();
+    	}
 	};
 })
 
 .controller('AddAnswerCtrl',  function ($scope){
 	$scope.answers = [];
+	$scope.correct = [];
 
 	$scope.addAnswer = function(newAnswer) {
 		if ($scope.answers.indexOf(newAnswer)==-1) $scope.answers.push(newAnswer);
@@ -157,15 +169,6 @@ angular.module('authoringTool.authoring.answerPanel.single',[])
     		$scope.answers[index] = $scope.answers[index + 1];
     		$scope.answers[index + 1] = temp;
 		}
-	};
-});
-
-angular.module('authoringTool.authoring.answerPanel.multiple',[])
-.directive('multipleChoice', function(){
-	return{
-		restrict: 'E',
-		require: '^questionBlock',
-		templateUrl: 'authoring/answerPanel/multipleChoice.html'
 	};
 });
 

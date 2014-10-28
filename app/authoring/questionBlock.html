@@ -18,7 +18,7 @@
   		<option>Matching Pairs</option>
 	</select>
 	<div ng-switch on="qtype">
-		<single-choice ng-switch-when="Single Choice Question"></single-choice>
+		<multiple-choice single="true" ng-switch-when="Single Choice Question"></multiple-choice>
 		<multiple-choice ng-switch-when="Multiple Choice Question"></multiple-choice>
 		<stars ng-switch-when="Rating"></stars>
 		<matching-pairs ng-switch-when="Matching Pairs"></matching-pairs>

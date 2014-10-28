@@ -1,1 +1,52 @@
-Multiple Choice
+<div class="panel panel-default" ng-controller="AddAnswerCtrl">
+	<div class="panel panel-body">
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<select multiple class="form-control" ng-model="selectedAnswer"> 
+        			<option  ng-repeat="item in answers track by $index" value="{{item}}">{{item}}</option>
+				</select>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<button class="btn btn-default" type="button">Move Selected Up</button>
+				<button class="btn btn-default" type="button">Move Selected Down</button> 
+				<button class="btn btn-default" type="button">Remove Selected</button>
+				<div ng-switch on="type">
+					<button class="btn btn-default" type="button" ng-switch-when="quiz">Set Selected as Correct Answer</button>
+				</div>
+			</div>
+		</div>
+		<label for="newanswer">Add answer:</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="newanswer" placeholder="Enter answer" ng-model="answerInput" />
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button" ng-click=addAnswer(answerInput)>Add</button>
+			</span>
+		</div>
+		<div ng-switch on="type">
+			<div ng-switch-when="quiz">
+				<label>Correct answer: </label>
+				<div ng-switch on="single">	
+					<div ng-switch-when="true">
+							{{correct}}
+					</div>
+					<div ng-switch-default>
+						<div class="row">
+							<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+								<select multiple class="form-control" ng-model="correctAnswers"> 
+        							<option  ng-repeat="item in correct track by $index" value="{{item}}">{{item}}</option>
+								</select>
+							</div>
+							<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+								<button class="btn btn-default" type="button">Remove Selected</button>
+							</div>
+						</div>
+						<label for="mininput">Minimum number of answers selectable: </label> 
+						<input type="number" name="mininput" ng-model="minvalue" min="1" max="{{correct.length}}" required ng-init="minvalue=1">
+						<label for="maxinput">Maximum number of answers selectable:</label>
+						<input type="number" name="maxinput" ng-model="maxvalue" min="1" max="{{correct.length}}" required ng-init="maxvalue=1">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
