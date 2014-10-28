@@ -8,13 +8,20 @@
 			</div>
 		</div>
     </accordion-heading>
-	<label for="question1">Question:</label>
-    	<input type="text" class="form-control" id="question1" placeholder="Enter question" />
+	<label for="question">Question:</label>
+   	<input type="text" class="form-control" id="question" placeholder="Enter question" />
 	<label for="type1">Question type:</label>
-	<select class="form-control" id="type1">
+	<select class="form-control" ng-model="qtype" id="type1">
   		<option>Single Choice Question</option>
   		<option>Multiple Choice Question</option>
   		<option>Rating</option>
   		<option>Matching Pairs</option>
 	</select>
+	<div ng-switch on="qtype">
+		<single-choice ng-switch-when="Single Choice Question"></single-choice>
+		<multiple-choice ng-switch-when="Multiple Choice Question"></multiple-choice>
+		<stars ng-switch-when="Rating"></stars>
+		<matching-pairs ng-switch-when="Matching Pairs"></matching-pairs>
+	</div>
+	<button type="button" class="btn btn-default">Save Changes</button>
 </accordion-group>

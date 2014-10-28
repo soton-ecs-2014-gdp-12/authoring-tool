@@ -1,0 +1,31 @@
+<div class="panel panel-default" ng-controller="AddAnswerCtrl">
+	<div class="panel panel-body">
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<select multiple ng-multiple="false" class="form-control" ng-model="selectedAnswer"> 
+        			<option  ng-repeat="item in answers track by $index" value="{{item}}">{{item}}</option>
+				</select>
+			</div>
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+				<button class="btn btn-default" type="button">Move Selected Up</button>
+				<button class="btn btn-default" type="button">Move Selected Down</button> 
+				<button class="btn btn-default" type="button">Remove Selected</button>
+				<div ng-switch on="$parent.type">
+					<button class="btn btn-default" type="button" ng-switch-when="quiz">Set Selected as Correct Answer</button>
+				</div>
+			</div>
+		</div>
+		<label for="newanswer">Add answer:</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="newanswer" placeholder="Enter answer" ng-model="answerInput" />
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button" ng-click=addAnswer(answerInput)>Add</button>
+			</span>
+		</div>
+		<div ng-switch on="$parent.type">
+			<div ng-switch-when="quiz">
+				<label>Correct answer: </label>
+			</div>
+		</div>
+	</div>
+</div>

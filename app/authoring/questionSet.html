@@ -1,18 +1,22 @@
 <div ng-controller="SetAddCtrl">
-<accordion-group>
-	<accordion-heading>
-	   	{{heading}}
-   	</accordion-heading>
-	<strong>Question set start time:</strong>
-	<time-choose></time-choose>	
-	<accordion>
-	<default-options-block heading="Question Set Default Options"></default-options-block>
-	<div ng-controller="SectionAddCtrl">
-		<button type="button" class="btn btn-default" ng-click=addPoll()>Add New Poll</button>
-		<button type="button" class="btn btn-default" ng-click=addQuestion()>Add New Question</button>
-		<question-block heading="{{question}}" ng-repeat="question in questions"> </question-block>
-		<poll-block heading="{{poll}}" ng-repeat="poll in polls"> </poll-block>
-	</div>
-	</accordion>
-</accordion-group>
+	<accordion-group>
+		<accordion-heading>
+		   	{{heading}}
+   		</accordion-heading>
+		<strong>Question set start time:</strong>
+		<time-choose></time-choose>	
+		<accordion>
+			<default-options-block heading="Question Set Default Options"></default-options-block>
+			<div ng-controller="SectionAddCtrl">
+				<button type="button" class="btn btn-default" ng-click=addPoll()>Add New Poll</button>
+				<button type="button" class="btn btn-default" ng-click=addQuestion()>Add New Question</button>
+				<div class="panel panel-default">
+					<div class="panel panel-body">
+						<question-block heading="{{question}}" type="quiz" ng-repeat="question in questions"> </question-block>
+						<question-block heading="{{poll}}" type="poll" ng-repeat="poll in polls"> </question-block>
+					</div>	
+				</div>
+			</div>
+		</accordion>
+	</accordion-group>
 </div>

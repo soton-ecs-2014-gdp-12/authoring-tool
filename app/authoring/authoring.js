@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock','authoringTool.authoring.questionSet'])
+angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock','authoringTool.authoring.questionSet', 'authoringTool.authoring.answerPanel'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/authoring', {
     templateUrl: 'authoring/authoring.html',
@@ -66,7 +66,7 @@ angular.module('authoringTool.authoring.defaultOptionsBlock',[])
 	};
 });
 
-angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.questionSet.questionBlock','authoringTool.authoring.questionSet.pollBlock','authoringTool.authoring.questionSet.timeChoose'])
+angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.questionSet.questionBlock','authoringTool.authoring.questionSet.timeChoose'])
 
 .controller('SectionAddCtrl',  function ($scope){
 	$scope.polls = ['Poll 1'];
@@ -101,19 +101,8 @@ angular.module('authoringTool.authoring.questionSet.questionBlock',[])
 		require: '^questionSet',
     	templateUrl: 'authoring/questionBlock.html',
 		scope: {
-    	  heading: '@'
-		},
-	};
-});
-
-angular.module('authoringTool.authoring.questionSet.pollBlock',[])
-.directive('pollBlock', function(){
-	return{
-		restrict: 'E',
-		require: '^questionSet',
-    	templateUrl: 'authoring/pollBlock.html',
-		scope: {
-    	  heading: '@'
+    		heading: '@',
+			type: '@'
 		},
 	};
 });
@@ -124,5 +113,76 @@ angular.module('authoringTool.authoring.questionSet.timeChoose',[])
 		restrict: 'E',
 		require: '^questionSet',
 		templateUrl: 'authoring/timeChoose.html'
+	};
+});
+
+angular.module('authoringTool.authoring.answerPanel',['authoringTool.authoring.answerPanel.single','authoringTool.authoring.answerPanel.multiple','authoringTool.authoring.answerPanel.stars','authoringTool.authoring.answerPanel.pairs']);
+
+angular.module('authoringTool.authoring.answerPanel.single',[])
+.directive('singleChoice', function(){
+	return{
+		restrict: 'E',
+		require: '^questionBlock',
+		templateUrl: 'authoring/answerPanel/singleChoice.html',
+	};
+})
+
+.controller('AddAnswerCtrl',  function ($scope){
+	$scope.answers = [];
+
+	$scope.addAnswer = function(newAnswer) {
+		if ($scope.answers.indexOf(newAnswer)==-1) $scope.answers.push(newAnswer);
+  	};
+
+	$scope.removeAnswer = function(toRemove) {
+		var index = $scope.answers.indexOf(toRemove);
+		if (index > -1) {
+    		$scope.answers.splice(index, 1);
+		}
+	};
+
+	$scope.moveAnswerUp = function(toMove) {
+		var index =  $scope.answers.indexOf(toMove);
+		if (index > 0){
+			var temp = $scope.answers[index - 1];
+    		$scope.answers[index - 1] = $scope.answers[index];
+    		$scope.answers[index] = temp;
+		}
+	};
+
+	$scope.moveAnswerDown = function(toMove) {
+		var index =  $scope.answers.indexOf(toMove);
+		if (index < ($scope.answers.length -1)){
+			var temp = $scope.answers[index];
+    		$scope.answers[index] = $scope.answers[index + 1];
+    		$scope.answers[index + 1] = temp;
+		}
+	};
+});
+
+angular.module('authoringTool.authoring.answerPanel.multiple',[])
+.directive('multipleChoice', function(){
+	return{
+		restrict: 'E',
+		require: '^questionBlock',
+		templateUrl: 'authoring/answerPanel/multipleChoice.html'
+	};
+});
+
+angular.module('authoringTool.authoring.answerPanel.stars',[])
+.directive('stars', function(){
+	return{
+		restrict: 'E',
+		require: '^questionBlock',
+		templateUrl: 'authoring/answerPanel/stars.html'
+	};
+});
+
+angular.module('authoringTool.authoring.answerPanel.pairs',[])
+.directive('matchingPairs', function(){
+	return{
+		restrict: 'E',
+		require: '^questionBlock',
+		templateUrl: 'authoring/answerPanel/matchingPairs.html'
 	};
 });
