@@ -24,27 +24,20 @@
 		</div>
 		<div ng-switch on="type">
 			<div ng-switch-when="quiz">
-				<label>Correct answer: </label>
-				<div ng-switch on="single">	
-					<div ng-switch-when="true">
-							{{correct}}
-					</div>
-					<div ng-switch-default>
-						<div class="row">
-							<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-								<select multiple class="form-control" ng-model="correctAnswers"> 
-        							<option  ng-repeat="item in correct track by $index" value="{{item}}">{{item}}</option>
-								</select>
-							</div>
-							<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-								<button class="btn btn-default" type="button">Remove Selected</button>
-							</div>
+				<div ng-if="correct.length>0">
+					<label>Correct answer: </label>
+					<div ng-switch on="single">	
+						<div ng-switch-when="true">
+								<input type="text" disabled value="{{correct}}" />
 						</div>
-						<div ng-if="correct.length>0">
-								<label for="mininput">Minimum number of answers selectable: </label> 
-								<input type="number" name="mininput" ng-model="minvalue" min="1" max="{{correct.length}}" required ng-init="minvalue=1">
-								<label for="maxinput">Maximum number of answers selectable:</label>
-								<input type="number" name="maxinput" ng-model="maxvalue" min="1" max="{{correct.length}}" required ng-init="maxvalue=1">
+						<div ng-switch-default>
+							<select multiple class="form-control" ng-model="correctAnswers"> 
+        						<option  ng-repeat="item in correct track by $index" value="{{item}}">{{item}}</option>
+							</select>
+							<label for="mininput">Minimum number of answers selectable: </label> 
+							<input type="number" name="mininput" ng-model="minvalue" min="1" max="{{correct.length}}" required ng-init="minvalue=1">
+							<label for="maxinput">Maximum number of answers selectable:</label>
+							<input type="number" name="maxinput" ng-model="maxvalue" min="1" max="{{correct.length}}" required ng-init="maxvalue=1">
 						</div>
 					</div>
 				</div>

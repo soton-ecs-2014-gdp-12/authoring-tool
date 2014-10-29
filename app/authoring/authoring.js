@@ -140,7 +140,7 @@ angular.module('authoringTool.authoring.answerPanel.multiple',[])
 
 .controller('AddAnswerCtrl',  function ($scope){
 	$scope.answers = [];
-	$scope.correct = [];
+	$scope.correct;
 
 	$scope.addAnswer = function(newAnswer) {
 		if ($scope.answers.indexOf(newAnswer)==-1) $scope.answers.push(newAnswer);
@@ -170,6 +170,10 @@ angular.module('authoringTool.authoring.answerPanel.multiple',[])
     		$scope.answers[index + 1] = temp;
 		}
 	};
+
+	$scope.setCorrect = function (toSet) {
+		$scope.correct = toSet;
+	}
 });
 
 angular.module('authoringTool.authoring.answerPanel.stars',[])
