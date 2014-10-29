@@ -143,7 +143,9 @@ angular.module('authoringTool.authoring.answerPanel.multiple',[])
 	$scope.correct;
 
 	$scope.addAnswer = function(newAnswer) {
-		if ($scope.answers.indexOf(newAnswer)==-1) $scope.answers.push(newAnswer);
+		if (newAnswer.length>0) {
+			if ($scope.answers.indexOf(newAnswer)==-1) $scope.answers.push(newAnswer);
+		}
   	};
 
 	$scope.removeAnswer = function(toRemove) {
