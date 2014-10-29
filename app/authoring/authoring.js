@@ -170,6 +170,10 @@ angular.module('authoringTool.authoring.answerPanel.multiple',[])
     		$scope.answers[index + 1] = temp;
 		}
 	};
+	
+	$scope.setCorrect = function(correctAnswer) {
+		$scope.correct = correctAnswer;
+	};
 });
 
 angular.module('authoringTool.authoring.answerPanel.stars',[])
