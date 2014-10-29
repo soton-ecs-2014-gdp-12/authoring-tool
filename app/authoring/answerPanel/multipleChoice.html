@@ -16,9 +16,9 @@
 				</div>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-				<button class="btn btn-default" type="button">Move Selected Up</button>
-				<button class="btn btn-default" type="button">Move Selected Down</button> 
-				<button class="btn btn-default" type="button">Remove Selected</button>
+				<button class="btn btn-default" type="button" ng-click=moveAnswerUp(answer.selected)>Move Selected Up</button>
+				<button class="btn btn-default" type="button" ng-click=moveAnswerDown(answer.selected)>Move Selected Down</button> 
+				<button class="btn btn-default" type="button" ng-click=removeAnswer(answer.selected)>Remove Selected</button>
 				<div ng-switch on="type">
 					<button class="btn btn-default" type="button" ng-switch-when="quiz" ng-click=setCorrect(answer.selected)>Set Selected as Correct Answer</button>
 				</div>
