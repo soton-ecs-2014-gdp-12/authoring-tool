@@ -1,1 +1,25 @@
-Stars Rating
+<div class="panel panel-default">
+	<div class="panel panel-body">
+		<form>
+			<input type="radio" name="responses" value="afterEach">
+				<label for="mininput">Minimum: </label> 
+				<input type="number" name="mininput" ng-model="minvaluescale" min="1" max="100" required ng-init="minvaluescale=1">
+				<label for="maxinput">Maximum:</label>
+				<input type="number" name="maxinput" ng-model="maxvaluescale" min="{{minvaluescale}}" max="100" required ng-init="maxvaluescale=1">
+			</input><br/>
+			<input type="radio" name="responses" value="afterSet">
+				<div class="btn-group">
+					<button type="button" disabled="disabled" class="btn btn-default btn-sm"><span class= "glyphicon glyphicon-star"></span></button>
+					<button type="button" disabled="disabled" class="btn btn-default btn-sm"><span class= "glyphicon glyphicon-star"></span></button>
+					<button type="button" disabled="disabled" class="btn btn-default btn-sm"><span class= "glyphicon glyphicon-star"></span></button>
+					<button type="button" disabled="disabled" class="btn btn-default btn-sm"><span class= "glyphicon glyphicon-star"></span></button>
+					<button type="button" disabled="disabled" class="btn btn-default btn-sm"><span class= "glyphicon glyphicon-star"></span></button>
+				</div>
+				<label for="mininput">Minimum: </label> 
+				<input type="number" name="mininput" ng-model="minvaluestars" min="1" max="10" required ng-init="minvaluestars=1">
+				<label for="maxinput">Maximum:</label>
+				<input type="number" name="maxinput" ng-model="maxvaluestars" min="{{minvaluestars}}" max="10" required ng-init="maxvaluestars=1">
+			</input>
+		</form> 
+	</div>
+</div>
