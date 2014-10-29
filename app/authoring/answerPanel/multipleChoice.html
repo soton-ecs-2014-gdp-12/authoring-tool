@@ -10,7 +10,7 @@
 					</div>
 					<div ng-switch-default>
 						<select multiple class="form-control" ng-model="answer.selected"> 
-        					<option ng-repeat="item in answers track by $index" value="{{item}}">{{item}}</option>
+							<option ng-repeat="item in answers track by $index" value="{{item}}">{{item}}</option>
 						</select>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 							<label for="mininput">Minimum number of answers selectable: </label> 
 							<input type="number" name="mininput" ng-model="minvalue" min="1" max="{{correct.length}}" required ng-init="minvalue=1">
 							<label for="maxinput">Maximum number of answers selectable:</label>
-							<input type="number" name="maxinput" ng-model="maxvalue" min="1" max="{{correct.length}}" required ng-init="maxvalue=1">
+							<input type="number" name="maxinput" ng-model="maxvalue" min="{{minvalue}}" max="{{correct.length}}" required ng-init="maxvalue=1">
 						</div>
 					</div>
 				</div>
