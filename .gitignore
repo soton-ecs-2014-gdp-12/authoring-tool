@@ -12,3 +12,7 @@ tmp
 .gitignore~
 *.json~
 *.sh~
+src/
+template/
+*.mp4
+
