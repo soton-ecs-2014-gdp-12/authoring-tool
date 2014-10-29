@@ -5,6 +5,7 @@
 				<div ng-switch on="single">	
 					<div ng-switch-when="true">
 						<select class="form-control" ng-model="answer.selected"> 
+							<option value=''>Answers...</option>
         					<option ng-repeat="item in answers track by $index" value="{{item}}">{{item}}</option>
 						</select>
 					</div>
