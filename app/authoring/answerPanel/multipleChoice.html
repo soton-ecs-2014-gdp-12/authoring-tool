@@ -11,7 +11,7 @@
 				<button class="btn btn-default" type="button">Move Selected Down</button> 
 				<button class="btn btn-default" type="button">Remove Selected</button>
 				<div ng-switch on="type">
-					<button class="btn btn-default" type="button" ng-switch-when="quiz">Set Selected as Correct Answer</button>
+					<button class="btn btn-default" type="button" ng-switch-when="quiz" ng-click=setCorrect(selectedAnswer)>Set Selected as Correct Answer</button>
 				</div>
 			</div>
 		</div>
@@ -40,10 +40,12 @@
 								<button class="btn btn-default" type="button">Remove Selected</button>
 							</div>
 						</div>
-						<label for="mininput">Minimum number of answers selectable: </label> 
-						<input type="number" name="mininput" ng-model="minvalue" min="1" max="{{correct.length}}" required ng-init="minvalue=1">
-						<label for="maxinput">Maximum number of answers selectable:</label>
-						<input type="number" name="maxinput" ng-model="maxvalue" min="1" max="{{correct.length}}" required ng-init="maxvalue=1">
+						<div ng-if="correct.length>0">
+								<label for="mininput">Minimum number of answers selectable: </label> 
+								<input type="number" name="mininput" ng-model="minvalue" min="1" max="{{correct.length}}" required ng-init="minvalue=1">
+								<label for="maxinput">Maximum number of answers selectable:</label>
+								<input type="number" name="maxinput" ng-model="maxvalue" min="1" max="{{correct.length}}" required ng-init="maxvalue=1">
+						</div>
 					</div>
 				</div>
 			</div>
