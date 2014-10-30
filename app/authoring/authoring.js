@@ -83,6 +83,30 @@ angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.
     	$scope.questions.push({name:'Question ' + quizNo, type:'quiz'})
   	};
 
+	$scope.moveQuestionUp = function(event,toMove) {
+  		event.preventDefault();
+ 		event.stopPropagation();
+
+		var index =  $scope.questions.indexOf(toMove);
+		if (index > 0){
+			var temp = $scope.questions[index - 1];
+    		$scope.questions[index - 1] = $scope.questions[index];
+    		$scope.questions[index] = temp;
+		}
+	};
+
+	$scope.moveQuestionDown = function(event,toMove) {
+  		event.preventDefault();
+ 		event.stopPropagation();
+
+		var index =  $scope.questions.indexOf(toMove);
+		if (index < ($scope.questions.length -1)){
+			var temp = $scope.questions[index];
+    		$scope.questions[index] = $scope.questions[index + 1];
+    		$scope.questions[index + 1] = temp;
+		}
+	};
+
 })
 
 .directive('questionSet', function(){
