@@ -4,8 +4,8 @@
 		<div class="clearfix">
 			{{heading}}: {{ctrl.questionTitle}} 
 			<div class="btn-group pull-right">
-				<button type="button" class="btn btn-default btn-sm" ng-click="moveQuestionUp($event,'{name: {{heading}}, type: {{type}}}')"><span class= "glyphicon glyphicon-arrow-up"></span></button>
-				<button type="button" class="btn btn-default btn-sm" ng-click="moveQuestionDown($event,'{name: {{heading}}, type: {{type}}}')"><span class= "glyphicon glyphicon-arrow-down"></span></button>
+				<button type="button" class="btn btn-default btn-sm" ng-click="moveQuestionUp($event,{name: heading, type: type})"><span class= "glyphicon glyphicon-arrow-up"></span></button>
+				<button type="button" class="btn btn-default btn-sm" ng-click="moveQuestionDown($event,{name: heading, type: type})"><span class= "glyphicon glyphicon-arrow-down"></span></button>
 			</div>
 		</div>
     </accordion-heading>
