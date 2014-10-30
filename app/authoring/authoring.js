@@ -87,7 +87,11 @@ angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.
   		event.preventDefault();
  		event.stopPropagation();
 
-		var index =  $scope.questions.indexOf(toMove);
+		var index = -1;
+		for (var i = 0, len = $scope.questions.length; i < len; i++) {
+       		if ($scope.questions[i].name === toMove.name) index=i;
+    	}
+
 		if (index > 0){
 			var temp = $scope.questions[index - 1];
     		$scope.questions[index - 1] = $scope.questions[index];
@@ -99,7 +103,11 @@ angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.
   		event.preventDefault();
  		event.stopPropagation();
 
-		var index =  $scope.questions.indexOf(toMove);
+		var index = -1;
+		for (var i = 0, len = $scope.questions.length; i < len; i++) {
+       		if ($scope.questions[i].name === toMove.name) index=i;
+    	}
+
 		if (index < ($scope.questions.length -1)){
 			var temp = $scope.questions[index];
     		$scope.questions[index] = $scope.questions[index + 1];
