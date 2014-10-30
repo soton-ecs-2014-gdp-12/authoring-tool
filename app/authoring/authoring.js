@@ -74,12 +74,12 @@ angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.
 	var quizNo = 2;
 
 	$scope.addPoll = function() {
-   		var pollNo = pollNo + 1;
+   		pollNo = pollNo + 1;
     	$scope.questions.push({name:'Poll ' + pollNo, type:'poll'})
   	};
 	
 	$scope.addQuestion = function() {
-   		var quizNo = quizNo + 1;
+   		quizNo = quizNo + 1;
     	$scope.questions.push({name:'Question ' + quizNo, type:'quiz'})
   	};
 
