@@ -12,8 +12,7 @@
 				<button type="button" class="btn btn-default" ng-click=addQuestion()>Add New Question</button>
 				<div class="panel panel-default">
 					<div class="panel panel-body">
-						<question-block heading="{{question}}" type="quiz" ng-repeat="question in questions"> </question-block>
-						<question-block heading="{{poll}}" type="poll" ng-repeat="poll in polls"> </question-block>
+						<question-block heading="{{question.name}}" type="{{question.type}}" ng-repeat="question in questions"> </question-block>
 					</div>	
 				</div>
 			</div>

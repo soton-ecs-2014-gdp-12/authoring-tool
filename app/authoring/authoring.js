@@ -69,17 +69,18 @@ angular.module('authoringTool.authoring.defaultOptionsBlock',[])
 angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.questionSet.questionBlock','authoringTool.authoring.questionSet.timeChoose'])
 
 .controller('SectionAddCtrl',  function ($scope){
-	$scope.polls = ['Poll 1'];
-	$scope.questions = ['Question 1', 'Question 2'];
+	$scope.questions = [{name:'Question 1', type:'quiz'}, {name: 'Question 2', type:'quiz'},{name:'Poll 1', type:'poll'}];
+	var pollNo = 1;
+	var quizNo = 2;
 
 	$scope.addPoll = function() {
-   		var newPollNo = $scope.polls.length + 1;
-    	$scope.polls.push('Poll ' + newPollNo)
+   		var newPollNo = pollNo + 1;
+    	$scope.questions.push({name:'Poll ' + newPollNo, type:'poll'})
   	};
 	
 	$scope.addQuestion = function() {
-   		var newQuestionNo = $scope.questions.length + 1;
-    	$scope.questions.push('Question ' + newQuestionNo)
+   		var newQuestionNo = quizNo + 1;
+    	$scope.questions.push({name:'Question ' + newQuestionNo, type:'quiz'})
   	};
 
 })
