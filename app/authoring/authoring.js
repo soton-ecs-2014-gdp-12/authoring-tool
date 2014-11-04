@@ -28,14 +28,6 @@ angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.de
 			url: "authoring/videogular.css"
 		},
 		plugins: {
-			questions: {
-				theme: {
-					url: "authoring/videogular-questions.css"
-				},
-				data:{
-					url: "authoring/caesar-test.js",
-				}
-			},
 			cuepoints: {
 				theme: {
 					url: "bower_components/videogular-cuepoints/cuepoints.css",
@@ -75,44 +67,53 @@ angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.
 
 	$scope.addPoll = function() {
    		pollNo = pollNo + 1;
-    	$scope.questions.push({name:'Poll ' + pollNo, type:'poll'})
+    	return $scope.questions.push({name:'Poll ' + pollNo, type:'poll'});
+		console.dir($scope.questions);	
   	};
 	
 	$scope.addQuestion = function() {
    		quizNo = quizNo + 1;
-    	$scope.questions.push({name:'Question ' + quizNo, type:'quiz'})
+    	return $scope.questions.push({name:'Question ' + quizNo, type:'quiz'});
+		console.dir($scope.questions);
   	};
 
-	$scope.moveQuestionUp = function(event,toMove) {
-  		event.preventDefault();
- 		event.stopPropagation();
-
+	Array.prototype.swap = function (x,y) {
+	  var b = this[x];
+	  this[x] = this[y];
+	  this[y] = b;
+	  return this;
+	}
+	
+	Array.prototype.getIndexByVal = function (toGet) {
 		var index = -1;
-		for (var i = 0, len = $scope.questions.length; i < len; i++) {
-       		if ($scope.questions[i].name === toMove.name) index=i;
+		for (var i = 0, len = this.length; i < len; i++) {
+       		if (this[i].name === toGet.name) index=i;
     	}
+		return index;
+	}
 
+	$scope.moveQuestionUp = function(event,toMove) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		var index = $scope.questions.getIndexByVal(toMove);
+		console.dir(index);
 		if (index > 0){
-			var temp = $scope.questions[index - 1];
-    		$scope.questions[index - 1] = $scope.questions[index];
-    		$scope.questions[index] = temp;
+			$scope.questions.swap(index, index-1);
 		}
+		console.dir($scope.questions);
 	};
 
 	$scope.moveQuestionDown = function(event,toMove) {
-  		event.preventDefault();
- 		event.stopPropagation();
+		event.preventDefault();
+		event.stopPropagation();
 
-		var index = -1;
-		for (var i = 0, len = $scope.questions.length; i < len; i++) {
-       		if ($scope.questions[i].name === toMove.name) index=i;
-    	}
-
-		if (index < ($scope.questions.length -1)){
-			var temp = $scope.questions[index];
-    		$scope.questions[index] = $scope.questions[index + 1];
-    		$scope.questions[index + 1] = temp;
+		var index = $scope.questions.getIndexByVal(toMove);
+		console.dir(index);
+		if (index > 0){
+			$scope.questions.swap(index, index+1);
 		}
+		console.dir($scope.questions);
 	};
 
 })
@@ -177,7 +178,9 @@ angular.module('authoringTool.authoring.answerPanel.multiple',[])
 
 	$scope.addAnswer = function(newAnswer) {
 		if (newAnswer.length>0) {
-			if ($scope.answers.indexOf(newAnswer)==-1) $scope.answers.push(newAnswer);
+			if ($scope.answers.indexOf(newAnswer)==-1){
+				$scope.answers.push(newAnswer);
+			}
 		}
   	};
 

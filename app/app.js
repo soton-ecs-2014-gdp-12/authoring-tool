@@ -5,7 +5,6 @@ angular.module('authoringTool', [
   'ngRoute',
   'com.2fdevs.videogular',
   'com.2fdevs.videogular.plugins.controls',
-  'uk.ac.soton.ecs.videogular.plugins.questions',
   'uk.ac.soton.ecs.videogular.plugins.cuepoints',
   'ui.bootstrap',
   'authoringTool.authoring',
