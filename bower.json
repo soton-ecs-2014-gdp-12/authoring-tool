@@ -15,7 +15,8 @@
     "videogular-themes-default": "~0.6.1",
     "jjv": "latest",
     "bootstrap": "~3.2.0",
-	"angular-bootstrap": "~0.11.2",
-	"videogular-cuepoints": "latest"
+    "angular-bootstrap": "~0.11.2",
+    "videogular-cuepoints": "latest",
+    "d3": "~3.4.13"
   }
 }
