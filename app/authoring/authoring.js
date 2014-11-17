@@ -1,6 +1,7 @@
 (function() {
 'use strict';
 
+// authoring
 angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock','authoringTool.authoring.questionSet', 'authoringTool.authoring.answerPanel'])
 
 .config(['$routeProvider', function($routeProvider) {
@@ -48,10 +49,11 @@ angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.de
 		var newSetNo = $scope.sets.length + 1;
 		$scope.sets.push('Question Set ' + newSetNo);
 	};
-
 })
 
+// authoring.defaultOptionsBlock
 angular.module('authoringTool.authoring.defaultOptionsBlock',[])
+
 .directive('defaultOptionsBlock', function(){
 	return {
 		restrict: 'E',
@@ -62,6 +64,7 @@ angular.module('authoringTool.authoring.defaultOptionsBlock',[])
 	};
 });
 
+// authoring.questionSet
 angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.questionSet.questionBlock','authoringTool.authoring.questionSet.timeChoose'])
 
 .controller('SectionAddCtrl',  function ($scope){
@@ -136,7 +139,6 @@ angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.
 		}
 		console.dir($scope.questions);
 	};
-
 })
 
 .directive('questionSet', function(){
@@ -149,7 +151,9 @@ angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.
 	};
 });
 
+// authoring.questionSet.questionBlock
 angular.module('authoringTool.authoring.questionSet.questionBlock',[])
+
 .directive('questionBlock', function(){
 	return {
 		restrict: 'E',
@@ -167,7 +171,9 @@ angular.module('authoringTool.authoring.questionSet.questionBlock',[])
 	};
 });
 
+// authoring.questionSet.timeChoose
 angular.module('authoringTool.authoring.questionSet.timeChoose',[])
+
 .directive('timeChoose', function(){
 	return {
 		restrict: 'E',
@@ -176,9 +182,12 @@ angular.module('authoringTool.authoring.questionSet.timeChoose',[])
 	};
 });
 
+// authoring.answerPanel
 angular.module('authoringTool.authoring.answerPanel',['authoringTool.authoring.answerPanel.multiple','authoringTool.authoring.answerPanel.stars','authoringTool.authoring.answerPanel.pairs']);
 
+// authoring.answerPanel.multiple
 angular.module('authoringTool.authoring.answerPanel.multiple',[])
+
 .directive('multipleChoice', function(){
 	return{
 		restrict: 'E',
@@ -235,7 +244,9 @@ angular.module('authoringTool.authoring.answerPanel.multiple',[])
 	}
 });
 
+// authoring.answerPanel.stars
 angular.module('authoringTool.authoring.answerPanel.stars',[])
+
 .directive('stars', function(){
 	return {
 		restrict: 'E',
@@ -244,7 +255,9 @@ angular.module('authoringTool.authoring.answerPanel.stars',[])
 	};
 });
 
+// authoring.answerPanel.pairs
 angular.module('authoringTool.authoring.answerPanel.pairs',[])
+
 .directive('matchingPairs', function(){
 	return {
 		restrict: 'E',
