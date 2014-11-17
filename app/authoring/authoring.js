@@ -7,9 +7,13 @@ angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.de
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/authoring', {
 		templateUrl: 'authoring/authoring.html',
-		controller: 'AccordionCtrl'
+		controller: 'MainCtrl'
 	});
 }])
+
+.controller('MainCtrl', function ($scope) {
+
+})
 
 .controller('AccordionCtrl', function ($scope) {
 	$scope.oneAtATime = true;
