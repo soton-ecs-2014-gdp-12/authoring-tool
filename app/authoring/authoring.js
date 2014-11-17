@@ -297,8 +297,8 @@ function questionAnsweredIncorrectly(questionId, time) {
 		}\
 	}';
 
-	template.replace("QUESTION_ID", questionId);
-	template.replace("TIME", time);
+	template.replace(/QUESTION_ID/g, questionId);
+	template.replace(/TIME/g, time);
 
 	return template;
 }
