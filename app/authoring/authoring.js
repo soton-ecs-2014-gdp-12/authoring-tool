@@ -12,7 +12,9 @@ angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.de
 }])
 
 .controller('MainCtrl', function ($scope) {
+	$scope.data = {
 
+	};
 })
 
 .controller('AccordionCtrl', function ($scope) {
