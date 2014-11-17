@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock','authoringTool.authoring.questionSet', 'authoringTool.authoring.answerPanel'])
@@ -251,3 +252,5 @@ angular.module('authoringTool.authoring.answerPanel.pairs',[])
 		templateUrl: 'authoring/answerPanel/matchingPairs.html'
 	};
 });
+
+})();
