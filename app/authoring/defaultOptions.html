@@ -1,46 +1,64 @@
 <accordion-group>
 	<accordion-heading>
-	   	{{heading}}
-   	</accordion-heading>
+		{{heading}}
+	</accordion-heading>
 	<accordion>
 		<accordion-group heading="Quizzes" is-open="status.isFirstOpen">
-    		<div class="checkbox">
-    			<label>
-      				<input type="checkbox"> Question can always be skipped </input>
-    			</label>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox">
+						Question can always be skipped
+						</input>
+				</label>
 			</div>
 			<div class="checkbox">
 				<label>
-      				<input type="checkbox"> Question can be skipped if answered correctly </input>
-    			</label>
-  			</div>
+					<input type="checkbox">
+						Question can be skipped if answered correctly
+						</input>
+				</label>
+			</div>
 			<div class="checkbox">
 				<label>
-      				<input type="checkbox"> If anwered incorrectly return to <input type="text"></input>:<input type="text"></input> </input>
-    			</label>
-  			</div>
+					<input type="checkbox">
+						If anwered incorrectly return to
+						<input type="text"></input>:<input type="text"></input>
+					</input>
+				</label>
+			</div>
 			<div class="checkbox">
 				<label>
-      				<input type="checkbox"> Show correct answer once submitted </input>
-    			</label>
-  			</div>
+					<input type="checkbox">
+						Show correct answer once submitted
+					</input>
+				</label>
+			</div>
 			<div class="checkbox">
 				<label>
-      				<input type="checkbox"> Notify user if they try to skip past a question </input>
-    			</label>
-  			</div>
-    	</accordion-group>
+					<input type="checkbox">
+						Notify user if they try to skip past a question
+					</input>
+				</label>
+			</div>
+		</accordion-group>
 		<accordion-group heading="Polls">
-      		<div class="checkbox">
-    			<label>
-      				<input type="checkbox"> Poll can always be skipped </input>
-    			</label>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox">
+						Poll can always be skipped
+					</input>
+				</label>
 			</div>
 			Show responses:
 			<form>
-				<input type="radio" name="responses" value="afterEach">After each poll</input><br/>
-				<input type="radio" name="responses" value="afterSet">After each question set</input>
+				<input type="radio" name="responses" value="afterEach">
+					After each poll
+				</input>
+				<br/>
+				<input type="radio" name="responses" value="afterSet">
+					After each question set
+				</input>
 			</form> 
-    	</accordion-group>
-    </accordion>
+		</accordion-group>
+	</accordion>
 </accordion-group>
