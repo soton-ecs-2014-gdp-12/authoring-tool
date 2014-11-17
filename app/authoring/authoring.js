@@ -57,6 +57,13 @@ angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.de
 	};
 })
 
+.controller('ExportCtrl',  function ($scope){
+	$scope.export = function() {
+		console.log($scope.data);
+		alert("Exported");
+	};
+})
+
 // authoring.defaultOptionsBlock
 angular.module('authoringTool.authoring.defaultOptionsBlock',[])
 

@@ -25,7 +25,9 @@
 					<default-options-block heading="Video Default Options"></default-options-block>
 				</accordion>
 			</div>
-			<button type="button" class="btn btn-default btn-lg">Export Quiz</button>
+			<div ng-controller="ExportCtrl">
+				<button type="button" class="btn btn-default btn-lg" ng-click="export()">Export Quiz</button>
+			</div>
 		</div>
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<div ng-controller="AccordionCtrl">
