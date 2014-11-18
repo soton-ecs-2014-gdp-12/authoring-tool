@@ -14,7 +14,18 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .controller('MainCtrl', function ($scope, $rootScope) {
 
 	$scope.data = {
-		test: {}
+		test: {},
+		global: {
+			quiz: {
+				alwaysSkippable: false,
+				skippableOnceCorrect: false,
+				showCorrectAnswerWhenSubmitted: false
+			},
+			polls: {
+				showResponsesWhen: "afterEach",
+				pollsAlwaysSkippable: false
+			}
+		}
 	};
 
 	$scope.exportBtn = function() {

@@ -1,24 +1,24 @@
 <accordion-group>
 	<accordion-heading>
-		Video Default Option
+		Default Video Options
 	</accordion-heading>
 	<accordion>
 		<accordion-group heading="Quizzes" is-open="status.isFirstOpen">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" />
+					<input type="checkbox" ng-model="data.global.quiz.alwaysSkippable" />
 					Question can always be skipped
 				</label>
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" />
+					<input type="checkbox" ng-model="data.global.quiz.skippableOnceCorrect" />
 					Question can be skipped if answered correctly
 				</label>
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" />
+					<input type="checkbox" ng-model="data.global.quiz.showCorrectAnswerWhenSubmitted"/>
 					Show correct answer once submitted
 				</label>
 			</div>
@@ -26,19 +26,19 @@
 		<accordion-group heading="Polls">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" />
+					<input type="checkbox" ng-model="data.global.polls.pollsAlwaysSkippable" />
 					Poll can always be skipped
 				</label>
 			</div>
 			Show responses:
 			<div class="radio">
 				<label>
-					<input type="radio" name="responses" value="afterEach" />
+					<input type="radio" name="responses" ng-model="data.global.polls.showResponsesWhen" value="afterEach" checked />
 					After each poll
 				</label>
 				<br/>
 				<label>
-					<input type="radio" name="responses" value="afterSet" />
+					<input type="radio" name="responses" ng-model="data.global.polls.showResponsesWhen" value="afterSet" />
 					After each question set
 				</label>
 			</div>
