@@ -64,16 +64,6 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 })
 
-.controller('blahCtrl', function($scope, $rootScope) {
-	$scope.checkbox = {};
-
-	$scope.$watch('checkbox', function(newVal, oldVal) {
-		console.log("changedasdasdasdasd");
-		console.log(newVal);
-		$rootScope.setGlobalData("questionsSkippable", newVal);
-	});
-})
-
 .controller('AuthoringVideoCtrl', function($scope, $sce) {
 	$scope.config = {
 		autoHide: false,
