@@ -1,15 +1,15 @@
 <accordion-group>
 	<accordion-heading>
-		{{heading}}
+		Video Default Option
 	</accordion-heading>
 	<accordion>
 		<accordion-group heading="Quizzes" is-open="status.isFirstOpen">
-			<div class="checkbox">
-				<label>
-					<input type="checkbox">
+    		<div class="checkbox">
+    			<label>
+      				<input type="checkbox" ng-controller="blahCtrl" ng-model="trolling.testing">
 						Question can always be skipped
-						</input>
-				</label>
+					</input>
+    			</label>
 			</div>
 			<div class="checkbox">
 				<label>
@@ -21,7 +21,7 @@
 			<div class="checkbox">
 				<label>
 					<input type="checkbox">
-						If anwered incorrectly return to
+						If answered incorrectly return to
 						<input type="text"></input>:<input type="text"></input>
 					</input>
 				</label>

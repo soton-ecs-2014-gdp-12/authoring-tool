@@ -2,7 +2,7 @@
 'use strict';
 
 // authoring
-angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.defaultOptionsBlock','authoringTool.authoring.questionSet', 'authoringTool.authoring.answerPanel'])
+angular.module('authoringTool.authoring', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/authoring', {
@@ -11,10 +11,39 @@ angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.de
 	});
 }])
 
-.controller('MainCtrl', function ($scope) {
-	$scope.data = {
-
+.controller('MainCtrl', function ($scope, $rootScope) {
+	$rootScope.data = {
+		globals: {
+			questionsSkippable: false
+		}
 	};
+
+	$scope.trolling = {
+		testing: {},
+		test: {}
+	};
+
+
+	$scope.$watch('trolling', function(newVal, oldVal) {
+		console.log("changedasdasddsTROLLING");
+		console.log(newVal);
+	});
+
+	$rootScope.questionsSkippable = false;
+
+	$rootScope.setGlobalData = function(key, val) {
+		$rootScope.data[key] = val;
+	};
+
+	$scope.export = function() {
+		console.log($scope.data);
+	};
+
+
+		$scope.testMe = function (key) {
+			console.log(key);
+		}
+
 })
 
 .controller('AccordionCtrl', function ($scope) {
@@ -24,6 +53,25 @@ angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.de
 		isFirstOpen: true,
 		isFirstDisabled: false
 	};
+
+	$scope.checkboxes = {};
+
+	$scope.$watch('checkboxes', function(newVal, oldVal) {
+		console.log("changed");
+		console.log(newVal);
+		$scope.setGlobalData("questionsSkippable", newVal);
+	});
+
+})
+
+.controller('blahCtrl', function($scope, $rootScope) {
+	$scope.checkbox = {};
+
+	$scope.$watch('checkbox', function(newVal, oldVal) {
+		console.log("changedasdasdasdasd");
+		console.log(newVal);
+		$rootScope.setGlobalData("questionsSkippable", newVal);
+	});
 })
 
 .controller('AuthoringVideoCtrl', function($scope, $sce) {
@@ -57,40 +105,18 @@ angular.module('authoringTool.authoring', ['ngRoute','authoringTool.authoring.de
 	};
 })
 
-.controller('ExportCtrl',  function ($scope){
-	$scope.export = function() {
-		console.log($scope.data);
-		alert("Exported");
-	};
-})
-
-// authoring.defaultOptionsBlock
-angular.module('authoringTool.authoring.defaultOptionsBlock',[])
-
 .directive('defaultOptionsBlock', function(){
 	return {
 		restrict: 'E',
-		templateUrl: 'authoring/defaultOptions.html',
-		scope: {
-			heading: '@'
-		},
+		templateUrl: 'authoring/defaultOptions.html'
 	};
-});
-
-// authoring.questionSet
-angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.questionSet.questionBlock','authoringTool.authoring.questionSet.timeChoose'])
+})
 
 .controller('SectionAddCtrl',  function ($scope){
 	$scope.questions = [
 		{
 			name:'Question 1',
 			type:'quiz'
-		}, {
-			name: 'Question 2',
-			type:'quiz'
-		},{
-			name:'Poll 1',
-			type:'poll'
 		}
 	];
 
@@ -162,10 +188,7 @@ angular.module('authoringTool.authoring.questionSet', ['authoringTool.authoring.
 			heading: '@'
 		},
 	};
-});
-
-// authoring.questionSet.questionBlock
-angular.module('authoringTool.authoring.questionSet.questionBlock',[])
+})
 
 .directive('questionBlock', function(){
 	return {
@@ -182,10 +205,7 @@ angular.module('authoringTool.authoring.questionSet.questionBlock',[])
 			}
 		}]
 	};
-});
-
-// authoring.questionSet.timeChoose
-angular.module('authoringTool.authoring.questionSet.timeChoose',[])
+})
 
 .directive('timeChoose', function(){
 	return {
@@ -193,10 +213,7 @@ angular.module('authoringTool.authoring.questionSet.timeChoose',[])
 		require: '^questionSet',
 		templateUrl: 'authoring/timeChoose.html'
 	};
-});
-
-// authoring.answerPanel
-angular.module('authoringTool.authoring.answerPanel',['authoringTool.authoring.answerPanel.multiple','authoringTool.authoring.answerPanel.stars','authoringTool.authoring.answerPanel.pairs']);
+})
 
 // authoring.answerPanel.multiple
 angular.module('authoringTool.authoring.answerPanel.multiple',[])
@@ -255,10 +272,7 @@ angular.module('authoringTool.authoring.answerPanel.multiple',[])
 	$scope.setCorrect = function (toSet) {
 		$scope.correct = toSet;
 	}
-});
-
-// authoring.answerPanel.stars
-angular.module('authoringTool.authoring.answerPanel.stars',[])
+})
 
 .directive('stars', function(){
 	return {
@@ -266,10 +280,7 @@ angular.module('authoringTool.authoring.answerPanel.stars',[])
 		require: '^questionBlock',
 		templateUrl: 'authoring/answerPanel/stars.html'
 	};
-});
-
-// authoring.answerPanel.pairs
-angular.module('authoringTool.authoring.answerPanel.pairs',[])
+})
 
 .directive('matchingPairs', function(){
 	return {

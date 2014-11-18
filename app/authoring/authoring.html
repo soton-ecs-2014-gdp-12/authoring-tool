@@ -20,12 +20,16 @@
 					</vg-controls>
 				</videogular>
 			</div>
+			<!-- Hidden for ease for the moment
 			<div ng-controller="AccordionCtrl">
 				<accordion>
-					<default-options-block heading="Video Default Options"></default-options-block>
+					<default-options-block></default-options-block>
 				</accordion>
-			</div>
-			<div ng-controller="ExportCtrl">
+			</div> -->
+			<div>
+				<input type="checkbox" ng-model="trolling.test">
+				Question can always be skipped
+				</input>
 				<button type="button" class="btn btn-default btn-lg" ng-click="export()">Export Quiz</button>
 			</div>
 		</div>
