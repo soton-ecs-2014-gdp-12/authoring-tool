@@ -242,14 +242,6 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		require: '^questionBlock',
 		templateUrl: 'authoring/answerPanel/stars.html'
 	};
-})
-
-.directive('matchingPairs', function(){
-	return {
-		restrict: 'E',
-		require: '^questionBlock',
-		templateUrl: 'authoring/answerPanel/matchingPairs.html'
-	};
 });
 
 function questionAnsweredIncorrectly(questionId, time) {
