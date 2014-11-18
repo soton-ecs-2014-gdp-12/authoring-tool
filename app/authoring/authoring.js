@@ -279,4 +279,39 @@ angular.module('authoringTool.authoring.answerPanel.pairs',[])
 	};
 });
 
+function questionAnsweredIncorrectly(questionId, time) {
+
+	var template = '{\
+		id: "incorrect-QUESTION_ID",\
+		type: "single",\
+		question: "Answer incorrect, do you want to review the video",\
+		options: [\
+			{\
+				name: "Yes"\
+			},\
+			{\
+				name: "No"\
+			}\
+		],\
+		action: function(questions, video) {\
+			var question = questions.get("QUESTION_ID");\
+			if (question.response !== question.correctAnswer) {\
+				video.setTime(TIME);\
+			}\
+		},\
+		condition: function(questions) {\
+			return questions.get("QUESTION_ID").isNotCorrect();\
+		}\
+	}';
+
+	template.replace(/QUESTION_ID/g, questionId);
+	template.replace(/TIME/g, time);
+
+	return template;
+}
+
+function exportWebWorker(data) {
+
+}
+
 })();
