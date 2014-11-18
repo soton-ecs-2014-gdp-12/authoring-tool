@@ -4,46 +4,44 @@
 	</accordion-heading>
 	<accordion>
 		<accordion-group heading="Quizzes" is-open="status.isFirstOpen">
-    		<div class="checkbox">
-    			<label>
-      				<input type="checkbox">
-						Question can always be skipped
-					</input>
-    			</label>
-			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox">
-						Question can be skipped if answered correctly
-						</input>
+					<input type="checkbox" />
+					Question can always be skipped
 				</label>
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox">
-						Show correct answer once submitted
-					</input>
+					<input type="checkbox" />
+					Question can be skipped if answered correctly
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" />
+					Show correct answer once submitted
 				</label>
 			</div>
 		</accordion-group>
 		<accordion-group heading="Polls">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox">
-						Poll can always be skipped
-					</input>
+					<input type="checkbox" />
+					Poll can always be skipped
 				</label>
 			</div>
 			Show responses:
-			<form>
-				<input type="radio" name="responses" value="afterEach">
+			<div class="radio">
+				<label>
+					<input type="radio" name="responses" value="afterEach" />
 					After each poll
-				</input>
+				</label>
 				<br/>
-				<input type="radio" name="responses" value="afterSet">
+				<label>
+					<input type="radio" name="responses" value="afterSet" />
 					After each question set
-				</input>
-			</form> 
+				</label>
+			</div>
 		</accordion-group>
 	</accordion>
 </accordion-group>
