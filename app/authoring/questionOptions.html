@@ -1,6 +1,6 @@
 <accordion-group>
 	<accordion-heading>
-		Video Default Option
+		{{heading}}
 	</accordion-heading>
 	<accordion>
 		<accordion-group heading="Quizzes" is-open="status.isFirstOpen">
@@ -16,6 +16,14 @@
 					<input type="checkbox">
 						Question can be skipped if answered correctly
 						</input>
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox">
+						If answered incorrectly return to
+						<input type="text" />:<input type="text" />
+					</input>
 				</label>
 			</div>
 			<div class="checkbox">

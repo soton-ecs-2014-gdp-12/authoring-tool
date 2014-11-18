@@ -81,6 +81,16 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 })
 
+.directive('questionOptionsBlock', function(){
+	return {
+		restrict: 'E',
+		templateUrl: 'authoring/defaultOptions.html',
+		scope: {
+			heading: '@'
+		}
+	};
+})
+
 .controller('SectionAddCtrl',  function ($scope){
 	$scope.questions = [
 		{

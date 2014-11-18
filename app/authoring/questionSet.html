@@ -6,9 +6,8 @@
 		<strong>Question set start time:</strong>
 		<time-choose></time-choose>	
 		<accordion>
-			<!-- hidden for the moment
-			<default-options-block heading="Question Set Default Options"></default-options-block>
-			-->
+			<question-options-block heading="Question Set Default Options"></question-options-block>
+
 			<div ng-controller="SectionAddCtrl">
 				<button type="button" class="btn btn-default" ng-click=addPoll()>Add New Poll</button>
 				<button type="button" class="btn btn-default" ng-click=addQuestion()>Add New Question</button>
