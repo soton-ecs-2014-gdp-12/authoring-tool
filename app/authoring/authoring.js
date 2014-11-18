@@ -12,37 +12,14 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 }])
 
 .controller('MainCtrl', function ($scope, $rootScope) {
-	$rootScope.data = {
-		globals: {
-			questionsSkippable: false
-		}
-	};
 
-	$scope.trolling = {
-		testing: {},
+	$scope.data = {
 		test: {}
 	};
 
-
-	$scope.$watch('trolling', function(newVal, oldVal) {
-		console.log("changedasdasddsTROLLING");
-		console.log(newVal);
-	});
-
-	$rootScope.questionsSkippable = false;
-
-	$rootScope.setGlobalData = function(key, val) {
-		$rootScope.data[key] = val;
-	};
-
-	$scope.export = function() {
+	$scope.exportBtn = function() {
 		console.log($scope.data);
 	};
-
-
-		$scope.testMe = function (key) {
-			console.log(key);
-		}
 
 })
 
@@ -54,6 +31,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		isFirstDisabled: false
 	};
 
+	/* Kept as possibly useful code later
 	$scope.checkboxes = {};
 
 	$scope.$watch('checkboxes', function(newVal, oldVal) {
@@ -61,6 +39,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		console.log(newVal);
 		$scope.setGlobalData("questionsSkippable", newVal);
 	});
+	*/
 
 })
 
@@ -71,7 +50,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		sources: [
 			{
 				src: $sce.trustAsResourceUrl("caesar-cipher.mp4"), type: "video/mp4"
-			},
+			}
 		],
 		theme: {
 			url: "authoring/videogular.css"
@@ -80,8 +59,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 			cuepoints: {
 				theme: {
 					url: "bower_components/videogular-cuepoints/cuepoints.css",
-				},
-			},
+				}
+			}
 		}
 	};
 })
@@ -120,14 +99,11 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 			name:'Poll ' + pollNo,
 			type:'poll'
 		});
-
-		console.dir($scope.questions);
 	};
 
 	$scope.addQuestion = function() {
 		quizNo = quizNo + 1;
 		return $scope.questions.push({name:'Question ' + quizNo, type:'quiz'});
-		console.dir($scope.questions);
 	};
 
 	Array.prototype.swap = function (x,y) {
@@ -135,7 +111,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		this[x] = this[y];
 		this[y] = b;
 		return this;
-	}
+	};
 
 	Array.prototype.getIndexByVal = function (toGet) {
 		var index = -1;
@@ -143,7 +119,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 			if (this[i].name === toGet.name) index=i;
 		}
 		return index;
-	}
+	};
 
 	$scope.moveQuestionUp = function(event,toMove) {
 		event.preventDefault();
@@ -176,7 +152,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		templateUrl: 'authoring/questionSet.html',
 		scope: {
 			heading: '@'
-		},
+		}
 	};
 })
 
@@ -205,9 +181,6 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 })
 
-// authoring.answerPanel.multiple
-angular.module('authoringTool.authoring.answerPanel.multiple',[])
-
 .directive('multipleChoice', function(){
 	return{
 		restrict: 'E',
@@ -224,7 +197,6 @@ angular.module('authoringTool.authoring.answerPanel.multiple',[])
 
 .controller('AddAnswerCtrl',  function ($scope){
 	$scope.answers = [];
-	$scope.correct;
 
 	$scope.addAnswer = function(newAnswer) {
 		if (newAnswer.length>0) {
