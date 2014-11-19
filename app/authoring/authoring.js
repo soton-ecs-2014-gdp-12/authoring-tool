@@ -252,12 +252,13 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .controller('questionBlockCtrl', function($scope) {
 	$scope.questionData = {
 		title: '',
-		type: ''
+		type: '',
+		answerData: {}
 	};
 
 	this.getType = function() {
 		return $scope.type;
-	};
+	}
 
 	$scope.$watch('questionData', function(newVal, oldVal) {
 		$scope.$parent.questionSetData.questions[$scope.questionId] = newVal;
@@ -288,43 +289,51 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 })
 
 .controller('AddAnswerCtrl',  function ($scope){
-	$scope.answers = [];
+	$scope.answerData = {
+		answers: [],
+		correct: ''
+	}
+
+	$scope.$watch('answerData', function(newVal, oldVal) {
+		$scope.$parent.$parent.questionData.answerData = newVal;
+	}, true); //note this is a deep watch and is slow
+
 
 	$scope.addAnswer = function(newAnswer) {
 		if (newAnswer.length>0) {
-			if ($scope.answers.indexOf(newAnswer)==-1){
-				$scope.answers.push(newAnswer);
+			if ($scope.answerData.answers.indexOf(newAnswer)==-1){
+				$scope.answerData.answers.push(newAnswer);
 			}
 		}
 	};
 
 	$scope.removeAnswer = function(toRemove) {
-		var index = $scope.answers.indexOf(toRemove);
+		var index = $scope.answerData.answers.indexOf(toRemove);
 		if (index > -1) {
-			$scope.answers.splice(index, 1);
+			$scope.answerData.answers.splice(index, 1);
 		}
 	};
 
 	$scope.moveAnswerUp = function(toMove) {
-		var index =  $scope.answers.indexOf(toMove);
+		var index =  $scope.answerData.answers.indexOf(toMove);
 		if (index > 0){
-			var temp = $scope.answers[index - 1];
-			$scope.answers[index - 1] = $scope.answers[index];
-			$scope.answers[index] = temp;
+			var temp = $scope.answerData.answers[index - 1];
+			$scope.answerData.answers[index - 1] = $scope.answerData.answers[index];
+			$scope.answerData.answers[index] = temp;
 		}
 	};
 
 	$scope.moveAnswerDown = function(toMove) {
-		var index =  $scope.answers.indexOf(toMove);
-		if (index < ($scope.answers.length -1)){
-			var temp = $scope.answers[index];
-			$scope.answers[index] = $scope.answers[index + 1];
-			$scope.answers[index + 1] = temp;
+		var index =  $scope.answerData.answers.indexOf(toMove);
+		if (index < ($scope.answerData.answers.length -1)){
+			var temp = $scope.answerData.answers[index];
+			$scope.answerData.answers[index] = $scope.answerData.answers[index + 1];
+			$scope.answerData.answers[index + 1] = temp;
 		}
 	};
 
 	$scope.setCorrect = function (toSet) {
-		$scope.correct = toSet;
+		$scope.answerData.correct = toSet;
 	}
 })
 
