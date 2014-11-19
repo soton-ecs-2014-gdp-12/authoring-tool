@@ -7,6 +7,7 @@ angular.module('authoringTool', [
   'com.2fdevs.videogular',
   'com.2fdevs.videogular.plugins.controls',
   'uk.ac.soton.ecs.videogular.plugins.cuepoints',
+  'uk.ac.soton.ecs.videogular.plugins.questions',
   'ui.bootstrap',
   'authoringTool.authoring',
   'authoringTool.version'

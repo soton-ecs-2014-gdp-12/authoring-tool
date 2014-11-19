@@ -31,6 +31,21 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 	$scope.exportBtn = function() {
 		console.log($scope.data);
+
+		var data = exportWebWorker($scope.data);
+
+		// URL.createObjectURL
+		window.URL = window.URL || window.webkitURL;
+
+		var blob = new Blob([data], {type: 'application/javascript'});
+
+		var url = URL.createObjectURL(blob);
+
+		console.log(url);
+
+		$rootScope.$emit("blob_url", url);
+
+		console.log(data);
 	};
 
 })
@@ -45,7 +60,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 })
 
-.controller('AuthoringVideoCtrl', function($scope, $sce) {
+.controller('AuthoringVideoCtrl', function($scope, $sce, $rootScope) {
 	$scope.config = {
 		autoHide: false,
 		autoHideTime: 3000,
@@ -62,9 +77,21 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 				theme: {
 					url: "bower_components/videogular-cuepoints/cuepoints.css",
 				}
+			},
+			questions: {
+				data:{
+					url: "",
+				}
 			}
 		}
 	};
+
+	$rootScope.$on("blob_url", function(event, url) {
+		console.log("got url " + url);
+
+		$scope.config.plugins.questions.data.url = url;
+	});
+
 })
 
 .controller('SetAddCtrl',  function ($scope){
@@ -340,8 +367,76 @@ function questionAnsweredIncorrectly(questionId, time) {
 	return template;
 }
 
+function processQuestion(data) {
+	var question = {};
+
+	var typeConversion = {
+		"Single Choice Question": "single"
+	}
+
+	question.type = typeConversion[data.type];
+
+	question.question = data.title; // TODO: Does the naming here make sense?
+
+	question.options = [
+		{
+			name: "Yes"
+		},
+		{
+			name: "No"
+		}
+	];
+
+	var questionString = JSON.stringify(question, null, 4);
+
+	return [questionString];
+}
+
+function processQuestionSet(data) {
+	var push = [].push;
+
+	var items = [];
+	data.questions.forEach(function(question) {
+		// put all the objects returned by processQuestion in to the items array
+		push.apply(items, processQuestion(question));
+	});
+
+	var questionSet = {
+		items: "ITEMS"
+	};
+
+	questionSet.time = data.timeAppear.seconds; // TODO: Take other fields in to account
+
+	var questionSetString = JSON.stringify(questionSet, null, 4);
+
+	questionSetString = questionSetString.replace('"ITEMS"', "[\n" + items.join() + "\n]\n");
+
+	return questionSetString;
+}
+
 function exportWebWorker(data) {
 
+	var annotationString = "{\n";
+
+	data.questionSet.forEach(function(questionSet, index) {
+		var questionSetString = processQuestionSet(data.questionSet[index]);
+
+		annotationString += "question" + index + ": " + questionSetString;
+	});
+
+	annotationString += "\n}";
+
+	var template = '/* jshint worker: true */\n\
+"use strict";\n\
+\n\
+importScripts("http://localhost:8002/app/bower_components/videogular-questions/questions-worker.js");\n\
+\n\
+/* global loadAnnotations */\n\
+loadAnnotations(ANNOTATION_DATA);';
+
+	var result = template.replace("ANNOTATION_DATA", annotationString);
+
+	return result;
 }
 
 })();

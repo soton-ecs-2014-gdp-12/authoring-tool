@@ -17,6 +17,8 @@
     "bootstrap": "~3.2.0",
     "angular-bootstrap": "~0.12.0",
     "videogular-cuepoints": "latest",
-    "d3": "~3.4.13"
+    "d3": "~3.4.13",
+    "videogular-questions": "~0.2.0",
+    "angular-charts": "~0.2.6"
   }
 }
