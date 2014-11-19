@@ -223,6 +223,11 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 })
 
 .controller('questionBlockCtrl', function($scope) {
+	$scope.questionData = {
+		title: '',
+		type: ''
+	};
+
 	this.getType = function() {
 		return $scope.type;
 	};

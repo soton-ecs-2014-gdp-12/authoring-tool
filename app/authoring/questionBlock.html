@@ -2,7 +2,7 @@
 <accordion-group>
 	<accordion-heading>
 		<div class="clearfix">
-			{{heading}}: {{questionTitle}}
+			{{heading}}: {{questionData.title}}
 			<div class="btn-group pull-right">
 				<button type="button" class="btn btn-default btn-sm" ng-click="moveQuestionUp($event,{name: heading, type: type})"><span class= "glyphicon glyphicon-arrow-up"></span></button>
 				<button type="button" class="btn btn-default btn-sm" ng-click="moveQuestionDown($event,{name: heading, type: type})"><span class= "glyphicon glyphicon-arrow-down"></span></button>
@@ -11,18 +11,20 @@
     </accordion-heading>
 			
 	<label for="question">Question:</label>
-   	<input type="text" class="form-control" id="question" placeholder="Enter question" ng-model="questionTitle" />
+   	<input type="text" class="form-control" id="question" placeholder="Enter question" ng-model="questionData.title" />
 	<label for="type1">Question type:</label>
-	<select class="form-control" ng-model="qtype" id="type1">
+	<select class="form-control" ng-model="questionData.type" id="type1">
    		<option value=''>- Select a question type -</option>
   		<option>Single Choice Question</option>
   		<option>Multiple Choice Question</option>
   		<option>Rating</option>
 	</select>
-	<div ng-switch on="qtype">
+	<div ng-switch on="questionData.type">
 		<multiple-choice single="true" ng-switch-when="Single Choice Question"></multiple-choice>
 		<multiple-choice ng-switch-when="Multiple Choice Question"></multiple-choice>
 		<stars ng-switch-when="Rating"></stars>
 	</div>
+
 </accordion-group>
 </div>
+<debug-scope-button to-echo="questionData" />
