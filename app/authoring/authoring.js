@@ -268,8 +268,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	}
 
 	$scope.$watch('answerData', function(newVal, oldVal) {
-		console.log(newVal);
-		//$scope.$parent.questionData.answerData = newVal;
+		$scope.$parent.$parent.questionData.answerData = newVal;
 	}, true); //note this is a deep watch and is slow
 
 
