@@ -1,8 +1,8 @@
-<div ng-controller="SectionAddCtrl as ctrl">
+<div>
 <accordion-group>
 	<accordion-heading>
 		<div class="clearfix">
-			{{heading}}: {{ctrl.questionTitle}} 
+			{{heading}}: {{questionTitle}}
 			<div class="btn-group pull-right">
 				<button type="button" class="btn btn-default btn-sm" ng-click="moveQuestionUp($event,{name: heading, type: type})"><span class= "glyphicon glyphicon-arrow-up"></span></button>
 				<button type="button" class="btn btn-default btn-sm" ng-click="moveQuestionDown($event,{name: heading, type: type})"><span class= "glyphicon glyphicon-arrow-down"></span></button>
@@ -11,7 +11,7 @@
     </accordion-heading>
 			
 	<label for="question">Question:</label>
-   	<input type="text" class="form-control" id="question" placeholder="Enter question" ng-model="ctrl.questionTitle" />
+   	<input type="text" class="form-control" id="question" placeholder="Enter question" ng-model="questionTitle" />
 	<label for="type1">Question type:</label>
 	<select class="form-control" ng-model="qtype" id="type1">
    		<option value=''>- Select a question type -</option>
