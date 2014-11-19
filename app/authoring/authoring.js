@@ -175,6 +175,21 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 			heading: '@'
 		}
 	};
+
+/* This is an insanely useful directive, prints the current scope, use it in place of batarang as it mainly fails */
+.directive('debugScopeButton', function() {
+	return {
+		restrict: 'E',
+		template: '<button type="button" class="btn  btn-warning btn-xs" ng-click="debugScope()">debug scope</button>',
+		scope: {
+			toEcho: "=toEcho"
+		},
+		controller: ['$scope', function($scope) {
+			$scope.debugScope = function() {
+				console.log($scope.toEcho);
+			};
+		}]
+	}
 })
 
 .directive('questionBlock', function(){
