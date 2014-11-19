@@ -2,7 +2,7 @@
 	<div class="panel panel-body">
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-				<div ng-switch on="single">	
+				<div ng-switch on="single">
 					<div ng-switch-when="true">
 						<select size="5" class="form-control" ng-model="answer.selected"> 
         					<option ng-repeat="item in answerData.answers track by $index" value="{{item}}">{{item}}</option>
@@ -42,24 +42,25 @@
 		</div>
 		<div ng-switch on="type">
 			<div ng-switch-when="quiz">
-				<div ng-if="correct.length>0">
+				<div ng-if="answerData.correct.length>0">
 					<label>Correct answer: </label>
 					<div ng-switch on="single">	
 						<div ng-switch-when="true">
-								<input type="text" disabled value="{{correct}}" />
+								<input type="text" disabled value="{{answerData.correct}}" />
 						</div>
 						<div ng-switch-default>
 							<select multiple class="form-control"> 
-        						<option  ng-repeat="item in correct track by $index" value="{{item}}">{{item}}</option>
+        						<option  ng-repeat="item in answerData.correct track by $index" value="{{item}}">{{item}}</option>
 							</select>
 							<label for="mininput">Minimum number of answers selectable: </label> 
-							<input type="number" name="mininput" ng-model="minvalue" min="1" max="{{correct.length}}" required ng-init="minvalue=1">
+							<input type="number" name="mininput" ng-model="minvalue" min="1" max="{{answerData.correct.length}}" required ng-init="minvalue=1">
 							<label for="maxinput">Maximum number of answers selectable:</label>
-							<input type="number" name="maxinput" ng-model="maxvalue" min="{{minvalue}}" max="{{correct.length}}" required ng-init="maxvalue=1">
+							<input type="number" name="maxinput" ng-model="maxvalue" min="{{minvalue}}" max="{{answerData.correct.length}}" required ng-init="maxvalue=1">
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<debug-scope-button to-echo="answerData" />
 	</div>
 </div>

@@ -225,12 +225,13 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .controller('questionBlockCtrl', function($scope) {
 	$scope.questionData = {
 		title: '',
-		type: ''
+		type: '',
+		answerData: {}
 	};
 
 	this.getType = function() {
 		return $scope.type;
-	};
+	}
 
 	$scope.$watch('questionData', function(newVal, oldVal) {
 		$scope.$parent.questionSetData.questions[$scope.questionId] = newVal;
@@ -262,10 +263,15 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 .controller('AddAnswerCtrl',  function ($scope){
 	$scope.answerData = {
-		answers: []
+		answers: [],
+		correct: ''
 	}
 
-	$scope.answerData.answers = [];
+	$scope.$watch('answerData', function(newVal, oldVal) {
+		console.log(newVal);
+		//$scope.$parent.questionData.answerData = newVal;
+	}, true); //note this is a deep watch and is slow
+
 
 	$scope.addAnswer = function(newAnswer) {
 		if (newAnswer.length>0) {
@@ -301,7 +307,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 
 	$scope.setCorrect = function (toSet) {
-		$scope.correct = toSet;
+		$scope.answerData.correct = toSet;
 	}
 })
 
