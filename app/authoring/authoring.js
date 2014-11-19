@@ -173,8 +173,19 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		templateUrl: 'authoring/questionSet.html',
 		scope: {
 			heading: '@'
-		}
+		},
+		controller: 'questionSetCtrl'
 	};
+})
+
+.controller('questionSetCtrl', function ($scope) {
+	$scope.timeAppear = {
+		minutes: 0,
+		seconds: 0,
+		milliseconds: 0
+	};
+
+})
 
 /* This is an insanely useful directive, prints the current scope, use it in place of batarang as it mainly fails */
 .directive('debugScopeButton', function() {
