@@ -25,7 +25,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 				showResponsesWhen: "afterEach",
 				pollsAlwaysSkippable: false
 			}
-		}
+		},
+		questionSet: []
 	};
 
 	$scope.exportBtn = function() {
@@ -41,16 +42,6 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		isFirstOpen: true,
 		isFirstDisabled: false
 	};
-
-	/* Kept as possibly useful code later
-	$scope.checkboxes = {};
-
-	$scope.$watch('checkboxes', function(newVal, oldVal) {
-		console.log("changed");
-		console.log(newVal);
-		$scope.setGlobalData("questionsSkippable", newVal);
-	});
-	*/
 
 })
 
@@ -77,11 +68,11 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 })
 
 .controller('SetAddCtrl',  function ($scope){
-	$scope.sets = ['Question Set 1'];
+	$scope.sets = [{id: 1, header: 'Question Set 1'}];
 
 	$scope.addQuestionSet = function() {
 		var newSetNo = $scope.sets.length + 1;
-		$scope.sets.push('Question Set ' + newSetNo);
+		$scope.sets.push({id: newSetNo, header: 'Question Set ' + newSetNo});
 	};
 })
 
@@ -172,6 +163,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		restrict: 'E',
 		templateUrl: 'authoring/questionSet.html',
 		scope: {
+			questionSetId: '@',
 			heading: '@'
 		},
 		controller: 'questionSetCtrl'
@@ -179,11 +171,18 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 })
 
 .controller('questionSetCtrl', function ($scope) {
-	$scope.timeAppear = {
-		minutes: 0,
-		seconds: 0,
-		milliseconds: 0
+	$scope.questionSetData = {
+		timeAppear: {
+			minutes: 0,
+			seconds: 0,
+			milliseconds: 0
+		}
 	};
+
+	$scope.$watch('questionSetData', function(newVal, oldVal) {
+		console.log(newVal);
+		$scope.$parent.data.questionSet[$scope.questionSetId] = newVal;
+	}, true); //note this is a deep watch and is slow
 
 })
 
