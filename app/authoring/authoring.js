@@ -68,11 +68,11 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 })
 
 .controller('SetAddCtrl',  function ($scope){
-	$scope.sets = [{id: 1, header: 'Question Set 1'}];
+	$scope.sets = [{id: 0, header: 'Question Set 1'}];
 
 	$scope.addQuestionSet = function() {
-		var newSetNo = $scope.sets.length + 1;
-		$scope.sets.push({id: newSetNo, header: 'Question Set ' + newSetNo});
+		var newSetNo = $scope.sets.length;
+		$scope.sets.push({id: newSetNo, header: 'Question Set ' + (newSetNo + 1)});
 	};
 })
 
@@ -96,7 +96,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .controller('SectionAddCtrl',  function ($scope){
 	$scope.questions = [
 		{
-			questionId: 1,
+			questionId: 0,
 			name:'Question 1',
 			type:'quiz'
 		}
@@ -109,7 +109,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		pollNo = pollNo + 1;
 
 		return $scope.questions.push({
-			questionId: $scope.questions.length + 1,
+			questionId: $scope.questions.length,
 			name:'Poll ' + pollNo,
 			type:'poll'
 		});
@@ -118,7 +118,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	$scope.addQuestion = function() {
 		quizNo = quizNo + 1;
 		return $scope.questions.push({
-			questionId: $scope.questions.length + 1,
+			questionId: $scope.questions.length,
 			name:'Question ' + quizNo,
 			type:'quiz'
 		});
@@ -182,11 +182,11 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 			minutes: 0,
 			seconds: 0,
 			milliseconds: 0
-		}
+		},
+		questions: []
 	};
 
 	$scope.$watch('questionSetData', function(newVal, oldVal) {
-		console.log(newVal);
 		$scope.$parent.data.questionSet[$scope.questionSetId] = newVal;
 	}, true); //note this is a deep watch and is slow
 
@@ -231,6 +231,10 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	this.getType = function() {
 		return $scope.type;
 	};
+
+	$scope.$watch('questionData', function(newVal, oldVal) {
+		$scope.$parent.questionSetData.questions[$scope.questionId] = newVal;
+	}, true); //note this is a deep watch and is slow
 })
 
 
