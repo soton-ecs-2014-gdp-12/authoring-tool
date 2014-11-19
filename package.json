@@ -18,7 +18,7 @@
     "startdev" : "scripts/startdev.sh",
 
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8002 -c-1",
+    "start": "http-server -a localhost -p 5002 -c-1",
 
     "download-video": "./downloadVideo.sh",
 
