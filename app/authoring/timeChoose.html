@@ -8,17 +8,31 @@
 			<td><a ng-click="incrementMilliseconds()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
 		</tr>
 		<tr>
-			<td style="width:50px;" class="form-group" ng-class="{'has-error': invalidMinutes}">
-				<input type="text" ng-model="minutes" ng-change="updateHours()" class="form-control text-center" ng-mousewheel="incrementHours()" ng-readonly="readonlyInput" maxlength="2">
+			<!--<td style="width:50px;" class="form-group" ng-class="{'has-error': invalidMinutes}">
+				<input type="text" ng-model="timeAppear.minutes" ng-change="updateHours()" class="form-control text-center" ng-mousewheel="incrementHours()" ng-readonly="readonlyInput" maxlength="2">
 			</td>
 			<td>:</td>
 			<td style="width:50px;" class="form-group" ng-class="{'has-error': invalidSeconds}">
-				<input type="text" ng-model="seconds" ng-change="updateSeconds()" class="form-control text-center" ng-readonly="readonlyInput" maxlength="2">
+				<input type="text" ng-model="timeAppear.seconds" ng-change="updateSeconds()" class="form-control text-center" ng-readonly="readonlyInput" maxlength="2">
 			</td>
 			<td>.</td>
 			<td style="width:50px;" class="form-group" ng-class="{'has-error': invalidMilliseconds}">
-				<input type="text" ng-model="milliseconds" ng-change="updateMilliseconds()" class="form-control text-center" ng-readonly="readonlyInput" maxlength="2">
-			</td>	
+				<input type="text" ng-model="timeAppear.milliseconds" ng-change="updateMilliseconds()" class="form-control text-center" ng-readonly="readonlyInput" maxlength="2">
+			</td>
+			-->
+
+			<td style="width:50px;" class="form-group">
+				<input type="text" ng-model="timeAppear.minutes" class="form-control text-center" maxlength="2">
+			</td>
+			<td>:</td>
+			<td style="width:50px;" class="form-group">
+				<input type="text" ng-model="timeAppear.seconds" class="form-control text-center" maxlength="2">
+			</td>
+			<td>.</td>
+			<td style="width:50px;" class="form-group">
+				<input type="text" ng-model="timeAppear.milliseconds" class="form-control text-center" maxlength="2">
+			</td>
+
 		</tr>
 		<tr class="text-center">
 			<td><a ng-click="decrementMinutes()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
