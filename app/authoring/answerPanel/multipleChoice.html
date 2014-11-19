@@ -53,9 +53,9 @@
         						<option  ng-repeat="item in answerData.correct track by $index" value="{{item}}">{{item}}</option>
 							</select>
 							<label for="mininput">Minimum number of answers selectable: </label> 
-							<input type="number" name="mininput" ng-model="minvalue" min="1" max="{{answerData.correct.length}}" required ng-init="minvalue=1">
+							<input type="number" name="mininput" ng-model="answerData.minanswers" min="1" max="{{answerData.correct.length}}" required ng-init="answerData.minanswers=1">
 							<label for="maxinput">Maximum number of answers selectable:</label>
-							<input type="number" name="maxinput" ng-model="maxvalue" min="{{minvalue}}" max="{{answerData.correct.length}}" required ng-init="maxvalue=1">
+							<input type="number" name="maxinput" ng-model="answerData.maxanswers" min="{{answerData.minanswers}}" max="{{answerData.correct.length}}" required ng-init="answerData.maxanswers=1">
 						</div>
 					</div>
 				</div>
