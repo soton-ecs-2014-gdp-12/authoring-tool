@@ -96,18 +96,20 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .controller('SectionAddCtrl',  function ($scope){
 	$scope.questions = [
 		{
+			questionId: 1,
 			name:'Question 1',
 			type:'quiz'
 		}
 	];
 
-	var pollNo = 1;
-	var quizNo = 2;
+	var pollNo = 0;
+	var quizNo = 1;
 
 	$scope.addPoll = function() {
 		pollNo = pollNo + 1;
 
 		return $scope.questions.push({
+			questionId: $scope.questions.length + 1,
 			name:'Poll ' + pollNo,
 			type:'poll'
 		});
@@ -115,7 +117,11 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 	$scope.addQuestion = function() {
 		quizNo = quizNo + 1;
-		return $scope.questions.push({name:'Question ' + quizNo, type:'quiz'});
+		return $scope.questions.push({
+			questionId: $scope.questions.length + 1,
+			name:'Question ' + quizNo,
+			type:'quiz'
+		});
 	};
 
 	Array.prototype.swap = function (x,y) {
@@ -208,16 +214,20 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		require: '^questionSet',
 		templateUrl: 'authoring/questionBlock.html',
 		scope: {
+			questionId: '@',
 			heading: '@',
 			type: '@'
 		},
-		controller: ['$scope', function($scope) {
-			this.getType = function() {
-				return $scope.type;
-			}
-		}]
+		controller: 'questionBlockCtrl'
 	};
 })
+
+.controller('questionBlockCtrl', function($scope) {
+	this.getType = function() {
+		return $scope.type;
+	};
+})
+
 
 .directive('timeChoose', function(){
 	return {
