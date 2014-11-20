@@ -387,14 +387,11 @@ function processQuestion(data) {
 
 	question.question = data.title; // TODO: Does the naming here make sense?
 
-	question.options = [
-		{
-			name: "Yes"
-		},
-		{
-			name: "No"
-		}
-	];
+	question.options = data.answerData.answers.map(function(answer) {
+		return {
+			name: answer
+		};
+	});
 
 	var questionString = JSON.stringify(question, null, 4);
 
