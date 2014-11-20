@@ -438,7 +438,7 @@ function exportWebWorker(data) {
 	var template = '/* jshint worker: true */\n\
 "use strict";\n\
 \n\
-importScripts("http://localhost:8002/app/bower_components/videogular-questions/questions-worker.js");\n\
+importScripts("http://localhost:5002/app/bower_components/videogular-questions/questions-worker.js");\n\
 \n\
 /* global loadAnnotations */\n\
 loadAnnotations(ANNOTATION_DATA);';
