@@ -4,13 +4,11 @@
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 				<div ng-switch on="single">
 					<div ng-switch-when="true">
-						<select size="5" class="form-control" ng-model="answer.selected"> 
-        					<option ng-repeat="item in answerData.answers track by $index" value="{{item}}">{{item}}</option>
+						<select size="5" class="form-control" ng-model="answer.selected" ng-options="answer for answer in answerData.answers"> 
 						</select>
 					</div>
 					<div ng-switch-default>
-						<select multiple class="form-control" ng-model="answer.selected"> 
-							<option ng-repeat="item in answerData.answers track by $index" value="{{item}}">{{item}}</option>
+						<select multiple class="form-control" ng-model="answer.selected" ng-options="answer for answer in answerData.answers"> 
 						</select>
 					</div>
 				</div>
