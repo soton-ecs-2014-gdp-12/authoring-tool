@@ -1,3 +1,5 @@
+/* jshint browser: true */
+
 (function() {
 'use strict';
 
@@ -7,7 +9,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/authoring', {
 		templateUrl: 'authoring/authoring.html',
-		controller: 'MainCtrl'
+		controller: 'MainCtrl',
 	});
 }])
 
@@ -24,9 +26,9 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 			polls: {
 				showResponsesWhen: "afterEach",
 				pollsAlwaysSkippable: false
-			}
+			},
 		},
-		questionSet: []
+		questionSet: [],
 	};
 
 	$scope.exportBtn = function() {
@@ -55,7 +57,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 	$scope.status = {
 		isFirstOpen: true,
-		isFirstDisabled: false
+		isFirstDisabled: false,
 	};
 
 })
@@ -67,23 +69,23 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		sources: [
 			{
 				src: $sce.trustAsResourceUrl("caesar-cipher.mp4"), type: "video/mp4"
-			}
+			},
 		],
 		theme: {
-			url: "authoring/videogular.css"
+			url: "authoring/videogular.css",
 		},
 		plugins: {
 			cuepoints: {
 				theme: {
 					url: "bower_components/videogular-cuepoints/cuepoints.css",
-				}
+				},
 			},
 			questions: {
 				data:{
 					url: "",
-				}
-			}
-		}
+				},
+			},
+		},
 	};
 
 	$rootScope.$on("blob_url", function(event, url) {
@@ -106,7 +108,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .directive('defaultOptionsBlock', function(){
 	return {
 		restrict: 'E',
-		templateUrl: 'authoring/defaultOptions.html'
+		templateUrl: 'authoring/defaultOptions.html',
 	};
 })
 
@@ -115,8 +117,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		restrict: 'E',
 		templateUrl: 'authoring/defaultOptions.html',
 		scope: {
-			heading: '@'
-		}
+			heading: '@',
+		},
 	};
 })
 
@@ -124,9 +126,9 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	$scope.questions = [
 		{
 			questionId: 0,
-			name:'Question 1',
-			type:'quiz'
-		}
+			name: 'Question 1',
+			type: 'quiz',
+		},
 	];
 
 	var pollNo = 0;
@@ -137,8 +139,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 		return $scope.questions.push({
 			questionId: $scope.questions.length,
-			name:'Poll ' + pollNo,
-			type:'poll'
+			name: 'Poll ' + pollNo,
+			type: 'poll',
 		});
 	};
 
@@ -146,8 +148,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		quizNo = quizNo + 1;
 		return $scope.questions.push({
 			questionId: $scope.questions.length,
-			name:'Question ' + quizNo,
-			type:'quiz'
+			name: 'Question ' + quizNo,
+			type: 'quiz',
 		});
 	};
 
@@ -160,57 +162,57 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 	Array.prototype.getIndexByVal = function (toGet) {
 		var index = -1;
-		for (var i = 0, len = this.length; i < len; i++) {
-			if (this[i].name === toGet.name) index=i;
+		for (var i = 0; i < this.length; i++) {
+			if (this[i].name === toGet.name) index = i;
 		}
 		return index;
 	};
 
-	$scope.moveQuestionUp = function(event,toMove) {
+	$scope.moveQuestionUp = function(event, toMove) {
 		event.preventDefault();
 		event.stopPropagation();
 
 		var index = $scope.questions.getIndexByVal(toMove);
 		console.dir(index);
-		if (index > 0){
-			$scope.questions.swap(index, index-1);
+		if (index > 0) {
+			$scope.questions.swap(index, index - 1);
 		}
 		console.dir($scope.questions);
 	};
 
-	$scope.moveQuestionDown = function(event,toMove) {
+	$scope.moveQuestionDown = function(event, toMove) {
 		event.preventDefault();
 		event.stopPropagation();
 
 		var index = $scope.questions.getIndexByVal(toMove);
 		console.dir(index);
 		if (index > 0){
-			$scope.questions.swap(index, index+1);
+			$scope.questions.swap(index, index + 1);
 		}
 		console.dir($scope.questions);
 	};
 })
 
-.directive('questionSet', function(){
+.directive('questionSet', function() {
 	return {
 		restrict: 'E',
 		templateUrl: 'authoring/questionSet.html',
 		scope: {
 			questionSetId: '@',
-			heading: '@'
+			heading: '@',
 		},
-		controller: 'questionSetCtrl'
+		controller: 'questionSetCtrl',
 	};
 })
 
-.controller('questionSetCtrl', function ($scope) {
+.controller('questionSetCtrl', function($scope) {
 	$scope.questionSetData = {
 		timeAppear: {
 			minutes: 0,
 			seconds: 0,
-			milliseconds: 0
+			milliseconds: 0,
 		},
-		questions: []
+		questions: [],
 	};
 
 	$scope.$watch('questionSetData', function(newVal, oldVal) {
@@ -225,14 +227,14 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		restrict: 'E',
 		template: '<button type="button" class="btn  btn-warning btn-xs" ng-click="debugScope()">debug scope</button>',
 		scope: {
-			toEcho: "=toEcho"
+			toEcho: "=toEcho",
 		},
 		controller: ['$scope', function($scope) {
 			$scope.debugScope = function() {
 				console.log($scope.toEcho);
 			};
-		}]
-	}
+		}],
+	};
 })
 
 .directive('questionBlock', function(){
@@ -243,9 +245,9 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		scope: {
 			questionId: '@',
 			heading: '@',
-			type: '@'
+			type: '@',
 		},
-		controller: 'questionBlockCtrl'
+		controller: 'questionBlockCtrl',
 	};
 })
 
@@ -253,12 +255,12 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	$scope.questionData = {
 		title: '',
 		type: '',
-		answerData: {}
+		answerData: {},
 	};
 
 	this.getType = function() {
 		return $scope.type;
-	}
+	};
 
 	$scope.$watch('questionData', function(newVal, oldVal) {
 		$scope.$parent.questionSetData.questions[$scope.questionId] = newVal;
@@ -270,7 +272,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	return {
 		restrict: 'E',
 		require: '^questionSet',
-		templateUrl: 'authoring/timeChoose.html'
+		templateUrl: 'authoring/timeChoose.html',
 	};
 })
 
@@ -280,19 +282,19 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		require: '^questionBlock',
 		templateUrl: 'authoring/answerPanel/multipleChoice.html',
 		scope: {
-			single: '@'
+			single: '@',
 		},
 		link: function(scope, element, attrs, ctrl) {
 			scope.type = ctrl.getType();
-		}
+		},
 	};
 })
 
 .controller('AddAnswerCtrl',  function ($scope){
 	$scope.answerData = {
 		answers: [],
-		correct: ''
-	}
+		correct: '',
+	};
 
 	$scope.$watch('answerData', function(newVal, oldVal) {
 		$scope.$parent.$parent.questionData.answerData = newVal;
@@ -300,8 +302,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 
 	$scope.addAnswer = function(newAnswer) {
-		if (newAnswer.length>0) {
-			if ($scope.answerData.answers.indexOf(newAnswer)==-1){
+		if (newAnswer.length > 0) {
+			if ($scope.answerData.answers.indexOf(newAnswer) === -1){
 				$scope.answerData.answers.push(newAnswer);
 			}
 		}
@@ -309,14 +311,14 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 	$scope.removeAnswer = function(toRemove) {
 		var index = $scope.answerData.answers.indexOf(toRemove);
-		if (index > -1) {
+		if (index !== -1) {
 			$scope.answerData.answers.splice(index, 1);
 		}
 	};
 
 	$scope.moveAnswerUp = function(toMove) {
-		var index =  $scope.answerData.answers.indexOf(toMove);
-		if (index > 0){
+		var index = $scope.answerData.answers.indexOf(toMove);
+		if (index > 0) {
 			var temp = $scope.answerData.answers[index - 1];
 			$scope.answerData.answers[index - 1] = $scope.answerData.answers[index];
 			$scope.answerData.answers[index] = temp;
@@ -324,8 +326,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 
 	$scope.moveAnswerDown = function(toMove) {
-		var index =  $scope.answerData.answers.indexOf(toMove);
-		if (index < ($scope.answerData.answers.length -1)){
+		var index = $scope.answerData.answers.indexOf(toMove);
+		if (index < $scope.answerData.answers.length - 1) {
 			var temp = $scope.answerData.answers[index];
 			$scope.answerData.answers[index] = $scope.answerData.answers[index + 1];
 			$scope.answerData.answers[index + 1] = temp;
@@ -334,14 +336,14 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 	$scope.setCorrect = function (toSet) {
 		$scope.answerData.correct = toSet;
-	}
+	};
 })
 
 .directive('stars', function(){
 	return {
 		restrict: 'E',
 		require: '^questionBlock',
-		templateUrl: 'authoring/answerPanel/stars.html'
+		templateUrl: 'authoring/answerPanel/stars.html',
 	};
 });
 
@@ -380,8 +382,8 @@ function processQuestion(data) {
 	var question = {};
 
 	var typeConversion = {
-		"Single Choice Question": "single"
-	}
+		"Single Choice Question": "single",
+	};
 
 	question.type = typeConversion[data.type];
 
@@ -389,7 +391,7 @@ function processQuestion(data) {
 
 	question.options = data.answerData.answers.map(function(answer) {
 		return {
-			name: answer
+			name: answer,
 		};
 	});
 
@@ -408,7 +410,7 @@ function processQuestionSet(data) {
 	});
 
 	var questionSet = {
-		items: "ITEMS"
+		items: "ITEMS",
 	};
 
 	questionSet.time = data.timeAppear.seconds; // TODO: Take other fields in to account
