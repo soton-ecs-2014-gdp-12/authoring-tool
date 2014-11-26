@@ -1,0 +1,30 @@
+<table>
+	<tbody>
+		<tr class="text-center">
+			<td><a ng-click="incrementMinutes()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+			<td>&nbsp;</td>
+			<td><a ng-click="incrementSeconds()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+			<td>&nbsp;</td>
+			<td><a ng-click="incrementMilliseconds()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+		</tr>
+		<tr>
+			<td style="width:50px;" class="form-group" ng-class="{'has-error': invalidMinutes}">
+				<input type="text" ng-model="minutes" ng-change="updateMinutes()" class="form-control text-center" ng-mousewheel="incrementHours()" ng-readonly="readonlyInput" maxlength="2"> </td>
+			<td>:</td>
+			<td style="width:50px;" class="form-group" ng-class="{'has-error': invalidSeconds}">
+				<input type="text" ng-model="seconds" ng-change="updateSeconds()" class="form-control text-center" ng-readonly="readonlyInput" maxlength="2">
+			</td>
+			<td>.</td>
+			<td style="width:50px;" class="form-group" ng-class="{'has-error': invalidMilliseconds}">
+				<input type="text" ng-model="milliseconds" ng-change="updateMilliseconds()" class="form-control text-center" ng-readonly="readonlyInput" maxlength="2">
+			</td>
+		</tr>
+		<tr class="text-center">
+			<td><a ng-click="decrementMinutes()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+			<td>&nbsp;</td>
+			<td><a ng-click="decrementSeconds()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+			<td>&nbsp;</td>
+			<td><a ng-click="decrementMilliseconds()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+		</tr>
+	</tbody>
+</table>

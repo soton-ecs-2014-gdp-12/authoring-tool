@@ -9,6 +9,7 @@ angular.module('authoringTool', [
   'uk.ac.soton.ecs.videogular.plugins.cuepoints',
   'uk.ac.soton.ecs.videogular.plugins.questions',
   'ui.bootstrap',
+  'authoringTool.shorttimepicker',
   'authoringTool.authoring',
   'authoringTool.version'
 ]).
