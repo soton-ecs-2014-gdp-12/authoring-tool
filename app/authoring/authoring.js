@@ -207,11 +207,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 .controller('questionSetCtrl', function($scope) {
 	$scope.questionSetData = {
-		timeAppear: {
-			minutes: 0,
-			seconds: 0,
-			milliseconds: 0,
-		},
+		timeAppear: new Date(0),
 		questions: [],
 	};
 
@@ -265,15 +261,6 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	$scope.$watch('questionData', function(newVal, oldVal) {
 		$scope.$parent.questionSetData.questions[$scope.questionId] = newVal;
 	}, true); //note this is a deep watch and is slow
-})
-
-
-.directive('timeChoose', function(){
-	return {
-		restrict: 'E',
-		require: '^questionSet',
-		templateUrl: 'authoring/timeChoose.html',
-	};
 })
 
 .directive('multipleChoice', function(){
@@ -413,7 +400,7 @@ function processQuestionSet(data) {
 		items: "ITEMS",
 	};
 
-	questionSet.time = data.timeAppear.seconds; // TODO: Take other fields in to account
+	questionSet.time = data.timeAppear.getTime() / 1000;
 
 	var questionSetString = JSON.stringify(questionSet, null, 4);
 
