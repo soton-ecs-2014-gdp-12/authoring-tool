@@ -18,11 +18,13 @@
   		<option>Single Choice Question</option>
   		<option>Multiple Choice Question</option>
   		<option>Rating</option>
+		<option>Range Selector</option>
 	</select>
 	<div ng-switch on="questionData.type">
 		<multiple-choice single="true" ng-switch-when="Single Choice Question"></multiple-choice>
 		<multiple-choice ng-switch-when="Multiple Choice Question"></multiple-choice>
 		<stars ng-switch-when="Rating"></stars>
+		<range ng-switch-when="Range Selector"></range>
 	</div>
 
 </accordion-group>

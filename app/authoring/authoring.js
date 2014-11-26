@@ -345,7 +345,30 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		require: '^questionBlock',
 		templateUrl: 'authoring/answerPanel/stars.html',
 	};
+})
+
+.directive('range', function(){
+	return {
+		restrict: 'E',
+		require: '^questionBlock',
+		templateUrl: 'authoring/answerPanel/range.html',
+		controller: 'rangeCtrl'
+	};
+})
+
+.controller('rangeCtrl', function($scope) {
+	$scope.answerData = {
+		minvalue: 0,
+		maxvalue: 0,
+		stepvalue: 0
+	};
+
+	$scope.$watch('answerData', function(newVal, oldVal) {
+		console.log($scope.$parent.questionData);
+		$scope.$parent.questionData.answerData = newVal;
+	}, true); //note this is a deep watch and is slow
 });
+
 
 function questionAnsweredIncorrectly(questionId, time) {
 
