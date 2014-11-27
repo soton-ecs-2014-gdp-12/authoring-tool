@@ -287,6 +287,11 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		$scope.$parent.$parent.questionData.answerData = newVal;
 	}, true); //note this is a deep watch and is slow
 
+	$scope.onAnswerBoxKeyDown = function($event) {
+		if ($event.keyCode === 13) {
+			$scope.addAnswer($scope.answerInput);
+		}
+	};
 
 	$scope.addAnswer = function(newAnswer) {
 		if (newAnswer.length > 0) {
