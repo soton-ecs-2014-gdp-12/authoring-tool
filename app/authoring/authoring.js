@@ -115,11 +115,33 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .directive('questionOptionsBlock', function(){
 	return {
 		restrict: 'E',
-		templateUrl: 'authoring/defaultOptions.html',
+		templateUrl: 'authoring/questionOptions.html',
 		scope: {
 			heading: '@',
 		},
+		controller: 'questionOptionsBlockCtrl',
 	};
+})
+
+.controller('questionOptionsBlockCtrl', function($scope) {
+	$scope.options = {
+		override: false,
+		quiz: {
+			alwaysSkippable: false,
+			skippableOnceCorrect: false,
+			showCorrectAnswerWhenSubmitted: false,
+			ifIncorrectReturnToTime: false,
+		},
+		poll: {
+			pollsAlwaysSkippable: false,
+			showResponsesWhen: 'afterEach',
+		},
+	};
+
+	$scope.$watch('options', function(newVal, oldVal) {
+		$scope.$parent.questionSetData.options = newVal;
+	}, true); //note this is a deep watch and is slow
+
 })
 
 .controller('SectionAddCtrl',  function ($scope){
@@ -209,6 +231,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	$scope.questionSetData = {
 		timeAppear: new Date(0),
 		questions: [],
+		options: {},
 	};
 
 	$scope.$watch('questionSetData', function(newVal, oldVal) {

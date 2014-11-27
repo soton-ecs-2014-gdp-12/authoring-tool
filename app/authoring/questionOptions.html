@@ -1,26 +1,31 @@
-<accordion-group>
-	<accordion-heading>
-		{{heading}}
-	</accordion-heading>
+<accordion-group heading="{{heading}}">
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" ng-model="options.override">
+			Override default quiz options for this question
+			</input>
+		</label>
+	</div>
+
 	<accordion>
 		<accordion-group heading="Quizzes" is-open="status.isFirstOpen">
     		<div class="checkbox">
     			<label>
-      				<input type="checkbox">
+      				<input type="checkbox" ng-model="options.quiz.alwaysSkippable">
 						Question can always be skipped
 					</input>
     			</label>
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox">
+					<input type="checkbox" ng-model="options.quiz.skippableOnceCorrect" >
 						Question can be skipped if answered correctly
 						</input>
 				</label>
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox">
+					<input type="checkbox" ng-model="options.quiz.ifIncorrectReturnToTime">
 						If answered incorrectly return to
 						<input type="text" />:<input type="text" />
 					</input>
@@ -28,7 +33,7 @@
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox">
+					<input type="checkbox" ng-model="options.quiz.showCorrectAnswerWhenSubmitted">
 						Show correct answer once submitted
 					</input>
 				</label>
@@ -37,21 +42,23 @@
 		<accordion-group heading="Polls">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox">
+					<input type="checkbox" ng-model="options.poll.pollsAlwaysSkippable">
 						Poll can always be skipped
 					</input>
 				</label>
 			</div>
 			Show responses:
-			<form>
-				<input type="radio" name="responses" value="afterEach">
+			<div class="radio">
+				<label>
+					<input type="radio" name="responses" ng-model="options.poll.showResponsesWhen" value="afterEach" checked />
 					After each poll
-				</input>
+				</label>
 				<br/>
-				<input type="radio" name="responses" value="afterSet">
+				<label>
+					<input type="radio" name="responses" ng-model="options.poll.showResponsesWhen" value="afterSet" />
 					After each question set
-				</input>
-			</form> 
+				</label>
+			</div>
 		</accordion-group>
 	</accordion>
 </accordion-group>
