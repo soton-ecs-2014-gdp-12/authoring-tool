@@ -298,6 +298,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 			if ($scope.answerData.answers.indexOf(newAnswer) === -1){
 				$scope.answerData.answers.push(newAnswer);
 			}
+			$scope.answerInput = "";
 		}
 	};
 
