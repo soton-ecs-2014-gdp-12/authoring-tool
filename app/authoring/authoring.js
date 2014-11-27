@@ -360,7 +360,19 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		restrict: 'E',
 		require: '^questionBlock',
 		templateUrl: 'authoring/answerPanel/stars.html',
+		controller: 'starsCtrl',
 	};
+})
+
+.controller('starsCtrl', function($scope) {
+	$scope.answerData = {
+		minvalue: 0,
+		maxvalue: 0,
+	};
+
+	$scope.$watch('answerData', function(newVal, oldVal) {
+		$scope.$parent.questionData.answerData = newVal;
+	}, true); //note this is a deep watch and is slow
 })
 
 .directive('range', function(){
