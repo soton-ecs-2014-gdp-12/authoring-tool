@@ -41,15 +41,16 @@
 		<div ng-switch on="type">
 			<div ng-switch-when="quiz">
 				<div ng-if="answerData.correct.length>0">
-					<label>Correct answer: </label>
 					<div ng-switch on="single">	
 						<div ng-switch-when="true">
-								<input type="text" disabled value="{{answerData.correct}}" />
+							<label>Correct answer: </label>
+							<input type="text" disabled value="{{answerData.correct}}" />
 						</div>
 						<div ng-switch-default>
-							<select multiple class="form-control"> 
-        						<option  ng-repeat="item in answerData.correct track by $index" value="{{item}}">{{item}}</option>
-							</select>
+							<label>Correct answers: </label>
+							<ul class="inlineList">
+								<li ng-repeat="item in answerData.correct track by $index" value="{{item}}">{{item}}</li>
+							</ul>
 							<label for="mininput">Minimum number of answers selectable: </label> 
 							<input type="number" name="mininput" ng-model="answerData.minanswers" min="1" max="{{answerData.correct.length}}" required ng-init="answerData.minanswers=1">
 							<label for="maxinput">Maximum number of answers selectable:</label>
