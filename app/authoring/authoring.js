@@ -437,7 +437,8 @@ function processQuestion(data) {
 
 	var typeConversion = {
 		"Single Choice Question": "single",
-		"Multiple Choice Question" : "multiple"
+		"Multiple Choice Question" : "multiple",
+		"Rating" : "stars",
 	};
 
 	question.type = typeConversion[data.type];
@@ -457,6 +458,11 @@ function processQuestion(data) {
 	if('multiple' === question.type) {
 		question.min = data.answerData.minanswers;
 		question.max = data.answerData.maxanswers;
+	}
+
+	if('stars' === question.type) {
+		question.min = data.answerData.minvalue;
+		question.max = data.answerData.maxvalue;
 	}
 
 	var questionString = JSON.stringify(question, null, 4);
