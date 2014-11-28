@@ -305,6 +305,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	$scope.answerData = {
 		answers: [],
 		correct: '',
+		minanswers: '',
+		maxanswers: '',
 	};
 
 	$scope.$watch('answerData', function(newVal, oldVal) {
@@ -453,8 +455,8 @@ function processQuestion(data) {
 	}
 
 	if('multiple' === question.type) {
-		question.min = -1;
-		question.max = -1;
+		question.min = data.answerData.minanswers;
+		question.max = data.answerData.maxanswers;
 	}
 
 	var questionString = JSON.stringify(question, null, 4);
