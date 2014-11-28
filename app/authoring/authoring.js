@@ -433,7 +433,6 @@ function questionAnsweredIncorrectly(questionId, time) {
 function processQuestion(data) {
 	var question = {};
 
-
 	var typeConversion = {
 		"Single Choice Question": "single",
 		"Multiple Choice Question" : "multiple"
@@ -443,13 +442,20 @@ function processQuestion(data) {
 
 	question.question = data.title; // TODO: Does the naming here make sense?
 
-	question.options = data.answerData.answers.map(function(answer) {
-		return {
-			name: answer,
-		};
-	});
+	if(['single', 'multiple'].indexOf(question.type) !== -1) {
+		question.options = data.answerData.answers.map(function(answer) {
+			return {
+				name: answer,
+			};
+		});
 
-	question.correctAnswer = data.answerData.correct;
+		question.correctAnswer = data.answerData.correct;
+	}
+
+	if('multiple' === question.type) {
+		question.min = -1;
+		question.max = -1;
+	}
 
 	var questionString = JSON.stringify(question, null, 4);
 
