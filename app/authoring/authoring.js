@@ -433,8 +433,10 @@ function questionAnsweredIncorrectly(questionId, time) {
 function processQuestion(data) {
 	var question = {};
 
+
 	var typeConversion = {
 		"Single Choice Question": "single",
+		"Multiple Choice Question" : "multiple"
 	};
 
 	question.type = typeConversion[data.type];
@@ -446,6 +448,8 @@ function processQuestion(data) {
 			name: answer,
 		};
 	});
+
+	question.correctAnswer = data.answerData.correct;
 
 	var questionString = JSON.stringify(question, null, 4);
 
