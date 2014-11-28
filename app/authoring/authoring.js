@@ -395,7 +395,6 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 
 	$scope.$watch('answerData', function(newVal, oldVal) {
-		console.log($scope.$parent.questionData);
 		$scope.$parent.questionData.answerData = newVal;
 	}, true); //note this is a deep watch and is slow
 });
@@ -443,7 +442,6 @@ function processQuestion(data) {
 	};
 
 	question.type = typeConversion[data.type];
-
 	question.question = data.title; // TODO: Does the naming here make sense?
 
 	if(['single', 'multiple'].indexOf(question.type) !== -1) {
@@ -456,17 +454,13 @@ function processQuestion(data) {
 		question.correctAnswer = data.answerData.correct;
 	}
 
-	if('multiple' === question.type) {
+	if(question.type === 'multiple') {
 		question.min = data.answerData.minanswers;
 		question.max = data.answerData.maxanswers;
-	}
-
-	if('stars' === question.type) {
+	}else if(question.type === 'stars') {
 		question.min = data.answerData.minvalue;
 		question.max = data.answerData.maxvalue;
-	}
-
-	if('range' === question.type) {
+	}else if( question.type === 'range') {
 		question.min = data.answerData.minvalue;
 		question.max = data.answerData.maxvalue;
 		question.step = data.answerData.stepvalue;
