@@ -43,3 +43,18 @@
 		.inlineList li:last-child::after {
 			content: none;
 		}
+
+videogular div.my-layer {
+	background-color: #FFF;
+	width: 80%;
+	float: left;
+	position: absolute;
+	display: block;
+	top: 5%;
+	left: 10%;
+	border-radius: 10px;
+	padding-bottom: 20px;
+	padding-top: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
