@@ -118,6 +118,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		templateUrl: 'authoring/questionOptions.html',
 		scope: {
 			heading: '@',
+			questionSetId: '@',
 		},
 		controller: 'questionOptionsBlockCtrl',
 	};

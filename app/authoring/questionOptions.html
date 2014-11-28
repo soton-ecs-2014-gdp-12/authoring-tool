@@ -50,12 +50,12 @@
 			Show responses:
 			<div class="radio">
 				<label>
-					<input type="radio" name="responses" ng-model="options.poll.showResponsesWhen" value="afterEach" checked />
+					<input type="radio" name="responses-qs-{{questionSetId}}" ng-model="options.poll.showResponsesWhen" value="afterEach" checked />
 					After each poll
 				</label>
 				<br/>
 				<label>
-					<input type="radio" name="responses" ng-model="options.poll.showResponsesWhen" value="afterSet" />
+					<input type="radio" name="responses-qs-{{questionSetId}}" ng-model="options.poll.showResponsesWhen" value="afterSet" />
 					After each question set
 				</label>
 			</div>
