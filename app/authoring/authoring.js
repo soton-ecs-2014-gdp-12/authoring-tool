@@ -191,29 +191,6 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		return index;
 	};
 
-	$scope.moveQuestionUp = function(event, toMove) {
-		event.preventDefault();
-		event.stopPropagation();
-
-		var index = $scope.questions.getIndexByVal(toMove);
-		console.dir(index);
-		if (index > 0) {
-			$scope.questions.swap(index, index - 1);
-		}
-		console.dir($scope.questions);
-	};
-
-	$scope.moveQuestionDown = function(event, toMove) {
-		event.preventDefault();
-		event.stopPropagation();
-
-		var index = $scope.questions.getIndexByVal(toMove);
-		console.dir(index);
-		if (index > 0){
-			$scope.questions.swap(index, index + 1);
-		}
-		console.dir($scope.questions);
-	};
 })
 
 .directive('questionSet', function() {
@@ -276,6 +253,30 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		title: '',
 		type: '',
 		answerData: {},
+	};
+
+	$scope.moveQuestionUp = function(event, toMove) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		var index = $scope.$parent.questions.getIndexByVal(toMove);
+		console.dir(index);
+		if (index > 0) {
+			$scope.$parent.questions.swap(index, index - 1);
+		}
+		console.dir($scope.$parent.questions);
+	};
+
+	$scope.moveQuestionDown = function(event, toMove) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		var index = $scope.$parent.questions.getIndexByVal(toMove);
+		console.dir(index);
+		if (index > 0){
+			$scope.$parent.questions.swap(index, index + 1);
+		}
+		console.dir($scope.$parent.questions);
 	};
 
 	this.getType = function() {
