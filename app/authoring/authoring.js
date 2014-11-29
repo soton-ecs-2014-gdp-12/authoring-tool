@@ -273,7 +273,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 		var index = $scope.$parent.questions.getIndexByVal(toMove);
 		console.dir(index);
-		if (index > 0){
+		if (index < $scope.$parent.questions.length - 1){
 			$scope.$parent.questions.swap(index, index + 1);
 		}
 		console.dir($scope.$parent.questions);
