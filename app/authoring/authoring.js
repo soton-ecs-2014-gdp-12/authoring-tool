@@ -456,20 +456,22 @@ function processQuestion(data) {
 	}
 
 	if(question.type === 'multiple') {
-		//This checks if the multiple question is actually a single one in disguise and changes it
+		// This checks if the multiple question is actually a single one in disguise
+		// and changes it
 		if(question.correctAnswer.length === 1 &&
 		   data.answerData.minanswers === 1 &&
-			data.answerData.maxanswers === 1) {
+		   data.answerData.maxanswers === 1) {
+
 			question.type = 'single';
 			question.correctAnswer = question.correctAnswer[0];
-		}else{
+		} else {
 			question.min = data.answerData.minanswers;
 			question.max = data.answerData.maxanswers;
 		}
-	}else if(question.type === 'stars') {
+	} else if(question.type === 'stars') {
 		question.min = data.answerData.minvalue;
 		question.max = data.answerData.maxvalue;
-	}else if( question.type === 'range') {
+	} else if( question.type === 'range') {
 		question.min = data.answerData.minvalue;
 		question.max = data.answerData.maxvalue;
 		question.step = data.answerData.stepvalue;
