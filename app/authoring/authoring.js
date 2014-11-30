@@ -432,7 +432,7 @@ function questionAnsweredIncorrectly(questionId, time) {
 	return template;
 }
 
-function processQuestion(data) {
+function processQuestion(data, getQuestionID) {
 	var question = {};
 
 	var typeConversion = {
@@ -477,18 +477,20 @@ function processQuestion(data) {
 		question.step = data.answerData.stepvalue;
 	}
 
+	question.id = getQuestionID();
+
 	var questionString = JSON.stringify(question, null, 4);
 
 	return [questionString];
 }
 
-function processQuestionSet(data) {
+function processQuestionSet(data, getQuestionID) {
 	var push = [].push;
 
 	var items = [];
 	data.questions.forEach(function(question) {
 		// put all the objects returned by processQuestion in to the items array
-		push.apply(items, processQuestion(question));
+		push.apply(items, processQuestion(question, getQuestionID));
 	});
 
 	var questionSet = {
@@ -508,8 +510,13 @@ function exportWebWorker(data) {
 
 	var annotationString = "{\n";
 
+	var questionIDCounter = 0;
+	var getQuestionID = function() {
+		return "" + questionIDCounter++;
+	};
+
 	data.questionSet.forEach(function(questionSet, index) {
-		var questionSetString = processQuestionSet(data.questionSet[index]);
+		var questionSetString = processQuestionSet(data.questionSet[index], getQuestionID);
 
 		annotationString += "question" + index + ": " + questionSetString;
 	});
