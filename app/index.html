@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="authoringTool" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="authoringTool" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="authoringTool" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="authoringTool" class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" data-ng-app="authoringTool" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="app.css"/>
-  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script type="text/javascript" src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
   <h2>Quiz Authoring Tool</h2>
@@ -22,29 +22,29 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-view></div>
+  <div data-ng-view></div>
 
   <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/d3/d3.min.js"></script>
-  <script src="bower_components/jjv/lib/jjv.js"></script>
-  <script src="bower_components/angular-charts/dist/angular-charts.js"></script>
-  <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
-  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-  <script src="bower_components/videogular/videogular.min.js"></script>
-  <script src="bower_components/videogular-controls/controls.js"></script>
-  <script src="bower_components/videogular-cuepoints/cuepoints.js"></script>
-  <script src="bower_components/videogular-questions/questions.js"></script>
-  <script src="app.js"></script>
-  <script src="authoring/shortTimepicker.js"></script>
-  <script src="authoring/authoring.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
+  <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+  <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
+  <script type="text/javascript" src="bower_components/jjv/lib/jjv.js"></script>
+  <script type="text/javascript" src="bower_components/angular-charts/dist/angular-charts.js"></script>
+  <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script type="text/javascript" src="bower_components/videogular/videogular.min.js"></script>
+  <script type="text/javascript" src="bower_components/videogular-controls/controls.js"></script>
+  <script type="text/javascript" src="bower_components/videogular-cuepoints/cuepoints.js"></script>
+  <script type="text/javascript" src="bower_components/videogular-questions/questions.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="authoring/shortTimepicker.js"></script>
+  <script type="text/javascript" src="authoring/authoring.js"></script>
+  <script type="text/javascript" src="components/version/version.js"></script>
+  <script type="text/javascript" src="components/version/version-directive.js"></script>
+  <script type="text/javascript" src="components/version/interpolate-filter.js"></script>
 
 </body>
 </html>
