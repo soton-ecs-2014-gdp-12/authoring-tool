@@ -105,13 +105,6 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 })
 
-.directive('defaultOptionsBlock', function(){
-	return {
-		restrict: 'E',
-		templateUrl: 'authoring/defaultOptions.html',
-	};
-})
-
 .directive('questionOptionsBlock', function(){
 	return {
 		restrict: 'E',
