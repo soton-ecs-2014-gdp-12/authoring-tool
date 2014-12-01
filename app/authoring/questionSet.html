@@ -13,6 +13,9 @@
 				<button type="button" class="btn btn-default" ng-click=addQuestion()>Add New Question</button>
 				<div class="panel panel-default">
 					<div class="panel panel-body">
+						<div class="emptyMessage" ng-if="questions.length == 0">
+							Add a question or poll with one of the buttons above.
+						</div>
 						<question-block question-id={{question.questionId}} heading="{{question.name}}" type="{{question.type}}" ng-repeat="question in questions"> </question-block>
 					</div>	
 				</div>

@@ -42,6 +42,9 @@
 						<button type="button" class="btn btn-default" ng-click="addQuestionSet()">Add Question Set</button>
 						<div class="panel panel-default">
 							<div class="panel panel-body">
+								<div class="emptyMessage" ng-if="sets.length == 0">
+									To start, add a question set with the button above.
+								</div>
 								<question-set question-set-id="{{set.id}}" heading="{{set.header}}" ng-repeat="set in sets"> </question-set>
 							</div>
 						</div>

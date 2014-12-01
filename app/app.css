@@ -61,3 +61,8 @@ videogular div.my-layer {
 	padding-left: 20px;
 	padding-right: 20px;
 }
+
+.emptyMessage {
+	text-align: center;
+	color: #777;
+}
