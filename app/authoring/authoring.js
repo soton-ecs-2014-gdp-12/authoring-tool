@@ -149,7 +149,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	$scope.questions = [];
 
 	var pollNo = 0;
-	var quizNo = 1;
+	var quizNo = 0;
 
 	$scope.addPoll = function() {
 		pollNo = pollNo + 1;
