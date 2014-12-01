@@ -324,30 +324,36 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		}
 	};
 
-	$scope.removeAnswer = function(toRemove) {
+	var applyToEach = function(fn) {
+		return function(list) {
+			for (var i in list) { fn(list[i]); }
+		};
+	};
+
+	$scope.removeAnswers = applyToEach(function(toRemove) {
 		var index = $scope.answerData.answers.indexOf(toRemove);
 		if (index !== -1) {
 			$scope.answerData.answers.splice(index, 1);
 		}
-	};
+	});
 
-	$scope.moveAnswerUp = function(toMove) {
+	$scope.moveAnswersUp = applyToEach(function(toMove) {
 		var index = $scope.answerData.answers.indexOf(toMove);
 		if (index > 0) {
 			var temp = $scope.answerData.answers[index - 1];
 			$scope.answerData.answers[index - 1] = $scope.answerData.answers[index];
 			$scope.answerData.answers[index] = temp;
 		}
-	};
+	});
 
-	$scope.moveAnswerDown = function(toMove) {
+	$scope.moveAnswersDown = applyToEach(function(toMove) {
 		var index = $scope.answerData.answers.indexOf(toMove);
 		if (index < $scope.answerData.answers.length - 1) {
 			var temp = $scope.answerData.answers[index];
 			$scope.answerData.answers[index] = $scope.answerData.answers[index + 1];
 			$scope.answerData.answers[index + 1] = temp;
 		}
-	};
+	});
 
 	$scope.setCorrect = function (toSet) {
 		$scope.answerData.correct = toSet;
