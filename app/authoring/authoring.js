@@ -321,6 +321,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 
 	$scope.addAnswer = function(newAnswer) {
+		newAnswer = newAnswer || '';
 		if (newAnswer.length > 0) {
 			if ($scope.answerData.answers.indexOf(newAnswer) === -1){
 				$scope.answerData.answers.push(newAnswer);
