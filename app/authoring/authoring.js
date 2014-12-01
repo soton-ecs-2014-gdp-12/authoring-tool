@@ -523,15 +523,18 @@ function exportWebWorker(data) {
 
 	annotationString += "\n}";
 
+	var questionsWorkerURL = window.location.protocol + "//" + window.location.host + window.location.pathname + "bower_components/videogular-questions/questions-worker.js";
+
 	var template = '/* jshint worker: true */\n\
 "use strict";\n\
 \n\
-importScripts("http://localhost:5002/app/bower_components/videogular-questions/questions-worker.js");\n\
+importScripts("WORKER_URL");\n\
 \n\
 /* global loadAnnotations */\n\
 loadAnnotations(ANNOTATION_DATA);';
 
-	var result = template.replace("ANNOTATION_DATA", annotationString);
+	var result = template.replace("ANNOTATION_DATA", annotationString)
+	                     .replace("WORKER_URL", questionsWorkerURL);
 
 	return result;
 }
