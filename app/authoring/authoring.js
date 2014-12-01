@@ -16,18 +16,6 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .controller('MainCtrl', function ($scope, $rootScope) {
 
 	$scope.data = {
-		test: {},
-		global: {
-			quiz: {
-				alwaysSkippable: false,
-				skippableOnceCorrect: false,
-				showCorrectAnswerWhenSubmitted: false
-			},
-			polls: {
-				showResponsesWhen: "afterEach",
-				pollsAlwaysSkippable: false
-			},
-		},
 		questionSet: [],
 	};
 
@@ -111,7 +99,6 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		templateUrl: 'authoring/questionOptions.html',
 		scope: {
 			heading: '@',
-			questionSetId: '@',
 		},
 		controller: 'questionOptionsBlockCtrl',
 	};
@@ -119,21 +106,14 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 .controller('questionOptionsBlockCtrl', function($scope) {
 	$scope.options = {
-		override: false,
-		quiz: {
-			alwaysSkippable: false,
-			skippableOnceCorrect: false,
-			showCorrectAnswerWhenSubmitted: false,
-			ifIncorrectReturnToTime: false,
-		},
-		poll: {
-			pollsAlwaysSkippable: false,
-			showResponsesWhen: 'afterEach',
-		},
+		"questionCanBeSkipped": false,
+		"ifIncorrectReturnToTime": false,
+		"recordResponses": false,
+		"showResponseWhen": 'afterEach',
 	};
 
 	$scope.$watch('options', function(newVal, oldVal) {
-		$scope.$parent.questionSetData.options = newVal;
+		$scope.$parent.questionData.options = newVal;
 	}, true); //note this is a deep watch and is slow
 
 })
@@ -196,7 +176,6 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	$scope.questionSetData = {
 		timeAppear: new Date(0),
 		questions: [],
-		options: {},
 	};
 
 	$scope.$watch('questionSetData', function(newVal, oldVal) {
@@ -458,7 +437,7 @@ function processQuestion(data, getQuestionID) {
 	};
 
 	question.type = typeConversion[data.type];
-	question.question = data.title; // TODO: Does the naming here make sense?
+	question.question = data.title;
 
 	if(['single', 'multiple'].indexOf(question.type) !== -1) {
 		question.options = data.answerData.answers.map(function(answer) {

@@ -1,64 +1,37 @@
-<accordion-group heading="{{heading}}">
-	<div class="checkbox">
+<b>{{heading}}:</b>
+<div class="checkbox">
+	<label>
+		<input type="checkbox" ng-model="options.questionCanBeSkipped" />
+		Question can be skipped
+	</label>
+</div>
+<div class="checkbox">
+	<label>
+		<input type="checkbox" ng-model="options.ifIncorrectReturnToTime" />
+		If answered incorrectly return to
+		<input type="text" />:<input type="text" />
+	</label>
+</div>
+
+<div class="checkbox">
+	<label>
+		<input type="checkbox" ng-model="options.recordResponses" />
+		Record responses
+	</label>
+</div>
+
+<div ng-show="options.recordResponses">
+	Show responses:
+	<div class="radio">
 		<label>
-			<input type="checkbox" ng-model="options.override">
-			Override default quiz options for this question
-			</input>
+			<input type="radio" name="responses-qs-{{questionSetId}}" ng-model="options.showResponseWhen" value="afterEach" checked />
+			After each poll
+		</label>
+		<br/>
+		<label>
+			<input type="radio" name="responses-qs-{{questionSetId}}" ng-model="options.showResponseWhen" value="afterSet" />
+			After each question set
 		</label>
 	</div>
 
-	<accordion>
-		<accordion-group heading="Quizzes" is-open="status.isFirstOpen">
-    		<div class="checkbox">
-    			<label>
-      				<input type="checkbox" ng-model="options.quiz.alwaysSkippable">
-						Question can always be skipped
-					</input>
-    			</label>
-			</div>
-			<div class="checkbox">
-				<label>
-					<input type="checkbox" ng-model="options.quiz.skippableOnceCorrect" >
-						Question can be skipped if answered correctly
-						</input>
-				</label>
-			</div>
-			<div class="checkbox">
-				<label>
-					<input type="checkbox" ng-model="options.quiz.ifIncorrectReturnToTime">
-						If answered incorrectly return to
-						<input type="text" />:<input type="text" />
-					</input>
-				</label>
-			</div>
-			<div class="checkbox">
-				<label>
-					<input type="checkbox" ng-model="options.quiz.showCorrectAnswerWhenSubmitted">
-						Show correct answer once submitted
-					</input>
-				</label>
-			</div>
-		</accordion-group>
-		<accordion-group heading="Polls">
-			<div class="checkbox">
-				<label>
-					<input type="checkbox" ng-model="options.poll.pollsAlwaysSkippable">
-						Poll can always be skipped
-					</input>
-				</label>
-			</div>
-			Show responses:
-			<div class="radio">
-				<label>
-					<input type="radio" name="responses-qs-{{questionSetId}}" ng-model="options.poll.showResponsesWhen" value="afterEach" checked />
-					After each poll
-				</label>
-				<br/>
-				<label>
-					<input type="radio" name="responses-qs-{{questionSetId}}" ng-model="options.poll.showResponsesWhen" value="afterSet" />
-					After each question set
-				</label>
-			</div>
-		</accordion-group>
-	</accordion>
-</accordion-group>
+</div>

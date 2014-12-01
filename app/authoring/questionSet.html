@@ -6,8 +6,6 @@
 		<strong>Question set start time:</strong>
 		<shorttimepicker ng-model="questionSetData.timeAppear" millisecond-step="10"></shorttimepicker>
 		<accordion>
-			<question-options-block heading="Question Set Default Options" question-set-id="{{questionSetId}}"></question-options-block>
-
 			<div ng-controller="SectionAddCtrl">
 				<button type="button" class="btn btn-default" ng-click=addQuestion()>Add New Question</button>
 				<div class="panel panel-default">
@@ -15,7 +13,7 @@
 						<div class="emptyMessage" ng-if="questions.length == 0">
 							Add a question to customise it.
 						</div>
-						<question-block question-id={{question.questionId}} heading="{{question.name}}" type="{{question.type}}" ng-repeat="question in questions"> </question-block>
+						<question-block question-id={{question.questionId}} heading="{{question.name}}" type="{{question.type}}" ng-repeat="question in questions"></question-block>
 					</div>	
 				</div>
 			</div>
