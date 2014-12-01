@@ -1,5 +1,4 @@
 <div>
-	<strong>Video URL:</strong> https://www.youtube.com/watch?v=EIyixC9NsLI
 	<div class="row">
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<div ng-controller="AuthoringVideoCtrl">
@@ -38,12 +37,7 @@
 		</div>
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<div ng-controller="AccordionCtrl">
-				<accordion>	
-					<accordion-group heading="Change Video" is-open="status.isFirstOpen">
-						<label for="vidUrl">Video URL:</label>
-    					<input type="text" class="form-control" id="vidUrl" placeholder="Enter URL" />
-						<button type="button" class="btn btn-default">Apply Changes</button>
-					</accordion-group>
+				<accordion> 
 					<div ng-controller="SetAddCtrl">
 						<button type="button" class="btn btn-default" ng-click="addQuestionSet()">Add Question Set</button>
 						<div class="panel panel-default">
