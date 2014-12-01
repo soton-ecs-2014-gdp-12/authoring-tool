@@ -1,12 +1,10 @@
 <div>
 <accordion-group>
 	<accordion-heading>
-		<div class="clearfix">
-			{{heading}}: {{questionData.title}}
-			<div class="btn-group pull-right">
-				<button type="button" class="btn btn-default btn-sm" ng-click="moveQuestionUp($event,{name: heading, type: type})"><span class= "glyphicon glyphicon-arrow-up"></span></button>
-				<button type="button" class="btn btn-default btn-sm" ng-click="moveQuestionDown($event,{name: heading, type: type})"><span class= "glyphicon glyphicon-arrow-down"></span></button>
-			</div>
+		{{heading}}: {{questionData.title}}
+		<div class="btn-group pull-right">
+			<button class="btn btn-default btn-sm" type="button" ng-click="moveQuestionUp($event,{name: heading, type: type})"><span class="glyphicon glyphicon-arrow-up"></span></button>
+			<button class="btn btn-default btn-sm" type="button" ng-click="moveQuestionDown($event,{name: heading, type: type})"><span class="glyphicon glyphicon-arrow-down"></span></button>
 		</div>
     </accordion-heading>
 			

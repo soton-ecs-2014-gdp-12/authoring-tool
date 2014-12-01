@@ -66,3 +66,8 @@ videogular div.my-layer {
 	text-align: center;
 	color: #777;
 }
+
+.accordion-toggle .btn-group.pull-right {
+	position: relative;
+	top: -6px;
+}
