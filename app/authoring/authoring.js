@@ -392,6 +392,26 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	$scope.$watch('answerData', function(newVal, oldVal) {
 		$scope.$parent.questionData.answerData = newVal;
 	}, true); //note this is a deep watch and is slow
+})
+
+
+.directive('text', function(){
+	return {
+		restrict: 'E',
+		require: '^questionBlock',
+		templateUrl: 'authoring/answerPanel/text.html',
+		controller: 'textCtrl'
+	};
+})
+
+.controller('textCtrl', function($scope) {
+	$scope.answerData = {
+		correctAnswer: ''
+	};
+
+	$scope.$watch('answerData', function(newVal, oldVal) {
+		$scope.$parent.questionData.answerData = newVal;
+	}, true); //note this is a deep watch and is slow
 });
 
 
@@ -434,6 +454,7 @@ function processQuestion(data, getQuestionID) {
 		"Multiple Choice Question" : "multiple",
 		"Rating" : "stars",
 		"Range Selector" : "range",
+		"Text" : "text"
 	};
 
 	question.type = typeConversion[data.type];
@@ -462,13 +483,15 @@ function processQuestion(data, getQuestionID) {
 			question.min = data.answerData.minanswers;
 			question.max = data.answerData.maxanswers;
 		}
-	} else if(question.type === 'stars') {
+	}else if(question.type === 'stars') {
 		question.min = data.answerData.minvalue;
 		question.max = data.answerData.maxvalue;
-	} else if( question.type === 'range') {
+	}else if(question.type === 'range') {
 		question.min = data.answerData.minvalue;
 		question.max = data.answerData.maxvalue;
 		question.step = data.answerData.stepvalue;
+	}else if(question.type === 'text') {
+		question.correctAnswer = data.answerData.correctAnswer;
 	}
 
 	question.id = getQuestionID();
