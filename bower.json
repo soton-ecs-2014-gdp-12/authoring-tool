@@ -19,6 +19,7 @@
     "videogular-cuepoints": "latest",
     "d3": "~3.4.13",
     "videogular-questions": "~0.3.0",
-    "angular-charts": "~0.2.6"
+    "angular-charts": "~0.2.6",
+    "videogular-heatmap": "~0.1.0"
   }
 }

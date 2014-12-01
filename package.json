@@ -14,7 +14,7 @@
   },
   "scripts": {
 
-    "postinstall": "bower install;npm run-script download-video",
+    "postinstall": "bower install && npm run-script download-video",
     "startdev" : "scripts/startdev.sh",
 
     "prestart": "npm install",
