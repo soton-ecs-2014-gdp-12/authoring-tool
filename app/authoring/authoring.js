@@ -97,7 +97,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 })
 
 .controller('SetAddCtrl',  function ($scope){
-	$scope.sets = [{id: 0, header: 'Question Set 1'}];
+	$scope.sets = [];
 
 	$scope.addQuestionSet = function() {
 		var newSetNo = $scope.sets.length;
@@ -146,13 +146,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 })
 
 .controller('SectionAddCtrl',  function ($scope){
-	$scope.questions = [
-		{
-			questionId: 0,
-			name: 'Question 1',
-			type: 'quiz',
-		},
-	];
+	$scope.questions = [];
 
 	var pollNo = 0;
 	var quizNo = 1;
