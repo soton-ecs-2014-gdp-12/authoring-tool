@@ -1,5 +1,13 @@
 <div class="panel panel-default" ng-controller="AddAnswerCtrl as answer">
 	<div class="panel panel-body">
+		<label for="newanswer">Add answer:</label>
+		<div class="input-group">
+			<input id="newanswer" class="form-control" type="text" placeholder="Enter new answer" ng-model="answerInput" ng-keydown="onAnswerBoxKeyDown($event)"/>
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button" ng-click=addAnswer(answerInput)>Add</button>
+			</span>
+		</div>
+
 		<div class="row">
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 				<div ng-switch on="single">
@@ -30,13 +38,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<label for="newanswer">Add answer:</label>
-		<div class="input-group">
-			<input type="text" class="form-control" id="newanswer" placeholder="Enter answer" ng-model="answerInput" ng-keydown="onAnswerBoxKeyDown($event)"/>
-			<span class="input-group-btn">
-				<button class="btn btn-default" type="button" ng-click=addAnswer(answerInput)>Add</button>
-			</span>
 		</div>
 		<div ng-switch on="type">
 			<div ng-switch-when="quiz">
