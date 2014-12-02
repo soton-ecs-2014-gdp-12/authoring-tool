@@ -3,15 +3,15 @@
 		<accordion-heading>
 		   	{{heading}}
    		</accordion-heading>
-		<strong>Question set start time:</strong>
+		<strong>Appear at:</strong>
 		<shorttimepicker ng-model="questionSetData.timeAppear" millisecond-step="10"></shorttimepicker>
 		<accordion>
 			<div ng-controller="SectionAddCtrl">
-				<button type="button" class="btn btn-default" ng-click=addQuestion()>Add New Question</button>
+				<button type="button" class="btn btn-default" ng-click=addQuestion()>Add question</button>
 				<div class="panel panel-default">
 					<div class="panel panel-body">
 						<div class="emptyMessage" ng-if="questions.length == 0">
-							Add a question to customise it.
+							You have not added any questions. Add one with the button above.
 						</div>
 						<question-block question-id={{question.questionId}} heading="{{question.name}}" type="{{question.type}}" ng-repeat="question in questions"></question-block>
 					</div>	

@@ -22,17 +22,17 @@
 				</div>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-				<button class="btn btn-default" type="button" ng-click=moveAnswersUp(answer.selected)>Move Selected Up</button>
-				<button class="btn btn-default" type="button" ng-click=moveAnswersDown(answer.selected)>Move Selected Down</button>
-				<button class="btn btn-default" type="button" ng-click=removeAnswers(answer.selected)>Remove Selected</button>
+				<button class="btn btn-default" type="button" ng-click=moveAnswersUp(answer.selected)>Move selected up</button>
+				<button class="btn btn-default" type="button" ng-click=moveAnswersDown(answer.selected)>Move selected down</button>
+				<button class="btn btn-default" type="button" ng-click=removeAnswers(answer.selected)>Remove selected</button>
 				<div ng-switch on="type">
 					<div ng-switch-when="quiz">
 						<div ng-switch on="single">
 							<div ng-switch-when="true">
-								<button class="btn btn-default" type="button" ng-click=setCorrect(answer.selected)>Set Selected as Correct Answer</button>
+								<button class="btn btn-default" type="button" ng-click=setCorrect(answer.selected)>Set selected as correct answer</button>
 							</div>
 							<div ng-switch-default>
-								<button class="btn btn-default" type="button" ng-click=setCorrect(answer.selected) tooltip-placement="bottom" tooltip="Press Ctrl and Click on the answers you wish to select">Set Selected as Correct Answer</button>
+								<button class="btn btn-default" type="button" ng-click=setCorrect(answer.selected) tooltip-placement="bottom" tooltip="Press Ctrl and Click on the answers you wish to select">Set selected as correct answer</button>
 							</div>
 						</div>					
 					</div>
