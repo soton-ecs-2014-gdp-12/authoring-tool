@@ -8,24 +8,24 @@
 		</div>
     </accordion-heading>
 
-	<question-options-block heading="Question Set Options"></question-options-block>
 	<label for="question">Question:</label>
    	<input type="text" class="form-control" id="question" placeholder="Enter question" ng-model="questionData.title" />
-	<label for="type1">Question type:</label>
+	<label for="type1">Type:</label>
 	<select class="form-control" ng-model="questionData.type" id="type1">
    		<option value=''>- Select a question type -</option>
-  		<option>Multiple Choice Question</option>
+  		<option>Multiple choice</option>
   		<option>Rating</option>
-		<option>Range Selector</option>
+		<option>Range selector</option>
 		<option>Text</option>
 	</select>
 	<div ng-switch on="questionData.type">
 		<multiple-choice single="true" ng-switch-when="Single Choice Question"></multiple-choice>
-		<multiple-choice ng-switch-when="Multiple Choice Question"></multiple-choice>
+		<multiple-choice ng-switch-when="Multiple choice"></multiple-choice>
 		<stars ng-switch-when="Rating"></stars>
-		<range ng-switch-when="Range Selector"></range>
+		<range ng-switch-when="Range selector"></range>
 		<text ng-switch-when="Text"></text>
 	</div>
+	<question-options-block heading="Options"></question-options-block>
 
 </accordion-group>
 </div>

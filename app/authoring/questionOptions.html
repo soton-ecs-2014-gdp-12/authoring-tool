@@ -2,7 +2,7 @@
 <div class="checkbox" role="checkbox">
 	<label>
 		<input type="checkbox" ng-model="options.questionCanBeSkipped" />
-		Question can be skipped
+		Allow the user to skip this question
 	</label>
 </div>
 <div class="checkbox" role="checkbox">
@@ -21,16 +21,16 @@
 </div>
 
 <div ng-show="options.recordResponses">
-	Show responses:
+	Show aggregated results:
 	<div class="radio">
 		<label>
 			<input type="radio" name="responses-qs-{{questionSetId}}" ng-model="options.showResponseWhen" value="afterEach" checked />
-			After each poll
+			immediately
 		</label>
 		<br/>
 		<label>
 			<input type="radio" name="responses-qs-{{questionSetId}}" ng-model="options.showResponseWhen" value="afterSet" />
-			After each question set
+			at the end of this question set
 		</label>
 	</div>
 </div>
