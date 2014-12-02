@@ -8,7 +8,7 @@
 					              vg-questions-data="config.plugins.questions.data.url">
 					</vg-questions>
 					<vg-controls vg-autohide="config.autoHide" vg-autohide-time="config.autoHideTime">
-						<vg-play-pause-button></vg-play-pause-button>
+						<vg-play-pause-button role="button"></vg-play-pause-button>
 						<vg-scrubBar>
 							<vg-scrubBarCurrentTime></vg-scrubBarCurrentTime>
 							<vg-cuepoints vg-cuepoints-config="config.plugins.cuepoints" vg-cuepoints-theme="config.plugins.cuepoints.theme.url"></vg-cuepoints>
@@ -23,25 +23,25 @@
 				</videogular>
 			</div>
 			<div ng-controller="AccordionCtrl">
-				<accordion>
+				<accordion role="tablist" aria-multiselectable="true">
 					<default-options-block></default-options-block>
 				</accordion>
 			</div>
 			<div>
 				<label>
-					<input type="checkbox" ng-model="data.test"/>
+					<input type="checkbox" role="checkbox" ng-model="data.test"/>
 					Checking this appears to reload the chrome plugin for angularjs (Batarang) keep for now. No Clue why
 				</label><br />
-				<button type="button" class="btn btn-default btn-lg" ng-click="exportBtn()">Export Quiz</button>
+				<button type="button" role="button" class="btn btn-default btn-lg" role="button" ng-click="exportBtn()">Export Quiz</button>
 			</div>
 		</div>
 		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 			<div ng-controller="AccordionCtrl">
-				<accordion> 
+				<accordion role="tablist" aria-multiselectable="true"> 
 					<div ng-controller="SetAddCtrl">
-						<button type="button" class="btn btn-default" ng-click="addQuestionSet()">Add Question Set</button>
+						<button type="button" role="button" class="btn btn-default" ng-click="addQuestionSet()">Add Question Set</button>
 						<div class="panel panel-default">
-							<div class="panel panel-body">
+							<div class="panel panel-body" role="tabpanel">
 								<div class="emptyMessage" ng-if="sets.length == 0">
 									To start, add a question set with the button above.
 								</div>

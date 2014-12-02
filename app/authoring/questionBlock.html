@@ -1,10 +1,10 @@
 <div>
-<accordion-group>
+<accordion-group role="tab" aria-labelledby="headingName">
 	<accordion-heading>
-		{{heading}}: {{questionData.title}}
+		<span role="heading" id="headingName">{{heading}}: {{questionData.title}}</span>
 		<div class="btn-group pull-right">
-			<button class="btn btn-default btn-sm" type="button" ng-click="moveQuestionUp($event,{name: heading, type: type})"><span class="glyphicon glyphicon-arrow-up"></span></button>
-			<button class="btn btn-default btn-sm" type="button" ng-click="moveQuestionDown($event,{name: heading, type: type})"><span class="glyphicon glyphicon-arrow-down"></span></button>
+			<button class="btn btn-default btn-sm" role="button" aria-label="Move Up" type="button" ng-click="moveQuestionUp($event,{name: heading, type: type})"><span class="glyphicon glyphicon-arrow-up"></span></button>
+			<button class="btn btn-default btn-sm" role="button" aria-label="Move Down" type="button" ng-click="moveQuestionDown($event,{name: heading, type: type})"><span class="glyphicon glyphicon-arrow-down"></span></button>
 		</div>
     </accordion-heading>
 

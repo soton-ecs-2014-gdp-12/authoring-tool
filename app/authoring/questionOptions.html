@@ -1,19 +1,19 @@
-<b>{{heading}}:</b>
-<div class="checkbox">
+<div role="heading"><b>{{heading}}:</b></div>
+<div class="checkbox" role="checkbox">
 	<label>
 		<input type="checkbox" ng-model="options.questionCanBeSkipped" />
 		Question can be skipped
 	</label>
 </div>
-<div class="checkbox">
+<div class="checkbox" role="checkbox">
 	<label>
 		<input type="checkbox" ng-model="options.ifIncorrectReturnToTime" />
 		If answered incorrectly return to
-		<input type="text" />:<input type="text" />
+		<input type="text" aria-label="minutes"/>:<input type="text" aria-label="seconds"/>.<input type="text" aria-label="milliseconds"/>
 	</label>
 </div>
 
-<div class="checkbox">
+<div class="checkbox" role="checkbox">
 	<label>
 		<input type="checkbox" ng-model="options.recordResponses" />
 		Record responses
@@ -33,5 +33,4 @@
 			After each question set
 		</label>
 	</div>
-
 </div>
