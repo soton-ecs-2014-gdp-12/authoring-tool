@@ -1,65 +1,62 @@
-<div>
-	<div class="row">
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<div ng-controller="AuthoringVideoCtrl">
-				<videogular vg-theme="config.theme.url">
-					<vg-video vg-src="config.sources"></vg-video>
-					<vg-questions vg-questions-theme="config.plugins.questions.theme.url"
-					              vg-questions-data="config.plugins.questions.data.url">
-					</vg-questions>
-					<vg-controls vg-autohide="config.autoHide" vg-autohide-time="config.autoHideTime">
-						<vg-play-pause-button role="button"></vg-play-pause-button>
-						<vg-scrubBar>
-							<vg-scrubBarCurrentTime></vg-scrubBarCurrentTime>
-							<vg-cuepoints vg-cuepoints-config="config.plugins.cuepoints" vg-cuepoints-theme="config.plugins.cuepoints.theme.url"></vg-cuepoints>
-						</vg-scrubBar>
-						<vg-timedisplay aria-label="Time left">{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
-						<vg-volume>
-							<vg-mutebutton></vg-mutebutton>
-							<vg-volumebar></vg-volumebar>
-						</vg-volume>
-						<vg-fullscreenButton></vg-fullscreenButton>
-					</vg-controls>
-				</videogular>
-			</div>
-			<div ng-controller="AccordionCtrl">
-				<accordion role="tablist" aria-multiselectable="true">
-					<default-options-block></default-options-block>
-				</accordion>
-			</div>
-			<div>
-				<label>
-					<input type="checkbox" role="checkbox" ng-model="data.test"/>
-					Checking this appears to reload the chrome plugin for angularjs (Batarang) keep for now. No Clue why
-				</label><br />
-				<p>
-					<strong>Welcome to the Videogular Questions authoring tool.</strong> Question sets appear at a certain time
-					during the video, and can contain one or more questions or polls. To begin, create one with the button on the
-					right.
-				</p>
-				<p>
-					To preview your quiz, click the "Export" button below. The video player will load your quiz, and you can play
-					through it just as your students would.
-				</p>
-				<button type="button" role="button" class="btn btn-default btn-lg" ng-click="exportBtn()">Export</button>
-			</div>
-		</div>
-		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<div ng-controller="AccordionCtrl">
-				<accordion role="tablist" aria-multiselectable="true"> 
-					<div ng-controller="SetAddCtrl">
-						<button type="button" role="button" class="btn btn-default" ng-click="addQuestionSet()">Add Question Set</button>
-						<div class="panel panel-default">
-							<div class="panel panel-body" role="tabpanel">
-								<div class="emptyMessage" ng-if="sets.length == 0">
-									To start, add a question set with the button above.
-								</div>
-								<question-set question-set-id="{{set.id}}" heading="{{set.header}}" ng-repeat="set in sets"> </question-set>
-							</div>
+<div class="column left">
+	<div ng-controller="AuthoringVideoCtrl">
+		<videogular vg-theme="config.theme.url">
+			<vg-video vg-src="config.sources"></vg-video>
+			<vg-questions vg-questions-theme="config.plugins.questions.theme.url"
+						  vg-questions-data="config.plugins.questions.data.url">
+			</vg-questions>
+			<vg-controls vg-autohide="config.autoHide" vg-autohide-time="config.autoHideTime">
+				<vg-play-pause-button role="button"></vg-play-pause-button>
+				<vg-scrubBar>
+					<vg-scrubBarCurrentTime></vg-scrubBarCurrentTime>
+					<vg-cuepoints vg-cuepoints-config="config.plugins.cuepoints" vg-cuepoints-theme="config.plugins.cuepoints.theme.url"></vg-cuepoints>
+				</vg-scrubBar>
+				<vg-timedisplay aria-label="Time left">{{ timeLeft | date:'mm:ss' }}</vg-timedisplay>
+				<vg-volume>
+					<vg-mutebutton></vg-mutebutton>
+					<vg-volumebar></vg-volumebar>
+				</vg-volume>
+				<vg-fullscreenButton></vg-fullscreenButton>
+			</vg-controls>
+		</videogular>
+	</div>
+	<div ng-controller="AccordionCtrl">
+		<accordion role="tablist" aria-multiselectable="true">
+			<default-options-block></default-options-block>
+		</accordion>
+	</div>
+	<div>
+		<label>
+			<input type="checkbox" role="checkbox" ng-model="data.test"/>
+			Checking this appears to reload the chrome plugin for angularjs (Batarang) keep for now. No Clue why
+		</label><br />
+		<p>
+			<strong>Welcome to the Videogular Questions authoring tool.</strong> Question sets appear at a certain time
+			during the video, and can contain one or more questions or polls. To begin, create one with the button on the
+			right.
+		</p>
+		<p>
+			To preview your quiz, click the "Export" button below. The video player will load your quiz, and you can play
+			through it just as your students would.
+		</p>
+		<button type="button" role="button" class="btn btn-default btn-lg" ng-click="exportBtn()">Export</button>
+	</div>
+</div>
+
+<div class="column right">
+	<div ng-controller="AccordionCtrl">
+		<accordion role="tablist" aria-multiselectable="true"> 
+			<div ng-controller="SetAddCtrl">
+				<button type="button" role="button" class="btn btn-default" ng-click="addQuestionSet()">Add question set</button>
+				<div class="panel panel-default">
+					<div class="panel panel-body" role="tabpanel">
+						<div class="emptyMessage" ng-if="sets.length == 0">
+							To start, add a question set with the button above.
 						</div>
+						<question-set question-set-id="{{set.id}}" heading="{{set.header}}" ng-repeat="set in sets"> </question-set>
 					</div>
-				</accordion>
+				</div>
 			</div>
-		</div>
+		</accordion>
 	</div>
 </div>

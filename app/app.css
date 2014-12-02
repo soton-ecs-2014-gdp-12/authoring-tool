@@ -1,8 +1,24 @@
-/* app css stylesheet */
+/* Layout */
+
+/*@top-padding: 55px; */
 
 body {
-	padding-top: 55px;
+	padding-top: 55px; /*@top-padding*/
 }
+
+.column {
+	position: fixed;
+	top: 55px;  /*@top-padding*/
+	bottom: 0;
+
+	width: 50%;
+
+	padding: 0 15px 0 15px;
+
+	overflow-y: auto;
+}
+	.column.left  { left:  0; }
+	.column.right { right: 0; }
 
 .menu {
 	list-style: none;
