@@ -67,6 +67,12 @@ videogular div.my-layer {
 	color: #777;
 }
 
+.accordion-toggle:focus {
+	border: 1px solid black;
+	padding: 3px;
+	border-radius: 3px;
+}
+
 .accordion-toggle .btn-group.pull-right {
 	position: relative;
 	top: -6px;
