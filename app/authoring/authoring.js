@@ -429,12 +429,15 @@ function processQuestion(data, getQuestionID) {
 	var question = {};
 
 	var typeConversion = {
-		"Single Choice Question": "single",
-		"Multiple Choice Question" : "multiple",
+		"Multiple choice" : "multiple",
 		"Rating" : "stars",
-		"Range Selector" : "range",
+		"Range selector" : "range",
 		"Text" : "text"
 	};
+
+	if (!(data.type in typeConversion)) {
+		console.error("unknown question type " + data.type);
+	}
 
 	question.type = typeConversion[data.type];
 	question.question = data.title;
