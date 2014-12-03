@@ -72,6 +72,9 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 				data:{
 					url: "",
 				},
+				pollServer:{
+					url: "http://localhost:5000/"
+				}
 			},
 		},
 	};
@@ -446,6 +449,10 @@ function processQuestion(data, getQuestionID) {
 		question.allowSkip = true;
 	}
 
+	if (data.options.recordResponses) {
+		question.recordsResponse = true;
+	}
+
 	question.type = typeConversion[data.type];
 	question.question = data.title;
 
@@ -489,35 +496,78 @@ function processQuestion(data, getQuestionID) {
 
 	var questionsToReturn = [questionString];
 
-	if (true) {
-		var checkQuestionString = checkQuestion(question.id, "0");
+	if (data.answerData.ifIncorrectReturnToTime) {
+		var time = "" + data.answerData.returnToTime.getTime() / 1000;
+
+		var checkQuestionString = checkQuestion(question.id, time);
 
 		questionsToReturn.push(checkQuestionString);
 	}
 
-	return questionsToReturn;
+	var endResultItems = [];
+	if (data.options.recordResponses) {
+		var resultItem = createResultItem(question.id);
+
+		if (data.options.showResponseWhen === "afterEach") {
+			questionsToReturn.push(resultItem);
+		} else if (data.options.showResponseWhen === "afterSet") {
+			endResultItems.push(resultItem);
+		} else {
+			console.error("unknown showResponseWhen value " + data.options.showResponseWhen);
+		}
+	}
+
+	return {
+		items: questionsToReturn,
+		endResultItems: endResultItems
+	};
 }
 
-function processQuestionSet(data, getQuestionID) {
-	var push = [].push;
-
-	var items = [];
-	data.questions.forEach(function(question) {
-		// put all the objects returned by processQuestion in to the items array
-		push.apply(items, processQuestion(question, getQuestionID));
-	});
-
+function createQuestionSet(items, time) {
 	var questionSet = {
 		items: "ITEMS",
 	};
 
-	questionSet.time = data.timeAppear.getTime() / 1000;
+	questionSet.time = time.getTime() / 1000;
 
 	var questionSetString = JSON.stringify(questionSet, null, 4);
 
 	questionSetString = questionSetString.replace('"ITEMS"', "[\n" + items.join() + "\n]\n");
 
 	return questionSetString;
+}
+
+function processQuestionSet(data, getQuestionID) {
+	var push = [].push;
+
+	var items = [];
+	var endResultItems = [];
+	data.questions.forEach(function(question) {
+		// put all the objects returned by processQuestion in to the items array
+
+		var processedQuestion = processQuestion(question, getQuestionID)
+
+		push.apply(items, processedQuestion.items);
+		push.apply(endResultItems, processedQuestion.endResultItems);
+	});
+
+	var questionSetString = createQuestionSet(items, data.timeAppear);
+
+	return {
+		questionSetString: questionSetString,
+		endResultItems: endResultItems
+	};
+}
+
+function createResultItem(questionId) {
+	var item = {
+		id: "results-" + questionId,
+		questionId: questionId
+	}
+
+	var itemString = JSON.stringify(item, null, 4);
+
+	return itemString;
 }
 
 function exportWebWorker(data) {
@@ -529,11 +579,23 @@ function exportWebWorker(data) {
 		return "" + questionIDCounter++;
 	};
 
-	data.questionSet.forEach(function(questionSet, index) {
-		var questionSetString = processQuestionSet(data.questionSet[index], getQuestionID);
+	var endResultItems = [];
 
-		annotationString += "question" + index + ": " + questionSetString;
+	data.questionSet.forEach(function(questionSet, index) {
+		var questionData = data.questionSet[index];
+
+		var processedQuestionSet = processQuestionSet(questionData, getQuestionID);
+
+		endResultItems.push.apply(endResultItems, processedQuestionSet.endResultItems);
+
+		annotationString += "annotation" + index + ": " + processedQuestionSet.questionSetString;
 	});
+
+	if (endResultItems.length > 0) {
+		var endResultAnnotation = createQuestionSet(endResultItems, new Date(150*1000));
+
+		annotationString += ",\nannotation" + data.questionSet.length + ": " + endResultAnnotation;
+	}
 
 	annotationString += "\n}";
 
