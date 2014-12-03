@@ -267,7 +267,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 })
 
-.controller('AddAnswerCtrl',  function ($scope){
+.controller('MultipleChoiceCtrl',  function ($scope){
 	$scope.answerData = {
 		answers: [],
 		correct: '',
