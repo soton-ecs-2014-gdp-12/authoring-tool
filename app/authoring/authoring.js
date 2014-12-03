@@ -273,6 +273,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		correct: '',
 		minanswers: '',
 		maxanswers: '',
+		ifIncorrectReturnToTime: false,
+		returnToTime: new Date(0),
 	};
 
 	$scope.$watch('answerData', function(newVal, oldVal) {
