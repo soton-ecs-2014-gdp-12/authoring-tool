@@ -439,6 +439,10 @@ function processQuestion(data, getQuestionID) {
 		console.error("unknown question type " + data.type);
 	}
 
+	if (data.options.questionCanBeSkipped) {
+		question.allowSkip = true;
+	}
+
 	question.type = typeConversion[data.type];
 	question.question = data.title;
 
