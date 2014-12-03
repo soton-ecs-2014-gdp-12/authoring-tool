@@ -20,6 +20,10 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 
 	$scope.exportBtn = function() {
+		// TODO
+	};
+
+	$scope.previewBtn = function() {
 		console.log($scope.data);
 
 		var data = exportWebWorker($scope.data);
@@ -36,6 +40,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		$rootScope.$emit("blob_url", url);
 
 		console.log(data);
+
+		// TODO: Rewind and play the video
 	};
 
 })
