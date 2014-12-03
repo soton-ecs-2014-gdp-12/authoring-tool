@@ -17,13 +17,27 @@
 	Show aggregated results:
 	<div class="radio">
 		<label>
-			<input type="radio" name="responses-qs-{{questionSetId}}" ng-model="options.showResponseWhen" value="afterEach" checked />
+			<input type="radio" 
+			       name="responses-qs-{{questionSetId}}" 
+			       ng-model="options.showResponseWhen" 
+			       value="afterEach" checked />
 			immediately
 		</label>
 		<br/>
 		<label>
-			<input type="radio" name="responses-qs-{{questionSetId}}" ng-model="options.showResponseWhen" value="afterSet" />
+			<input type="radio"
+			       name="responses-qs-{{questionSetId}}"
+			       ng-model="options.showResponseWhen"
+			       value="afterSet" />
 			at the end of this question set
+		</label>
+		<br/>
+		<label>
+			<input type="radio"
+			       name="responses-qs-{{questionSetId}}"
+			       ng-model="options.showResponseWhen"
+			       value="endOfVideo" />
+			at the end of the video
 		</label>
 	</div>
 </div>

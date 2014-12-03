@@ -505,12 +505,15 @@ function processQuestion(data, getQuestionID) {
 	}
 
 	var endResultItems = [];
+	var endAnnotationItems = [];
 	if (data.options.recordResponses) {
 		var resultItem = createResultItem(question.id);
 
 		if (data.options.showResponseWhen === "afterEach") {
 			questionsToReturn.push(resultItem);
 		} else if (data.options.showResponseWhen === "afterSet") {
+			endAnnotationItems.push(resultItem);
+		} else if (data.options.showResponseWhen === "endOfVideo") {
 			endResultItems.push(resultItem);
 		} else {
 			console.error("unknown showResponseWhen value " + data.options.showResponseWhen);
@@ -519,6 +522,7 @@ function processQuestion(data, getQuestionID) {
 
 	return {
 		items: questionsToReturn,
+		endAnnotationItems: endAnnotationItems,
 		endResultItems: endResultItems
 	};
 }
@@ -542,6 +546,7 @@ function processQuestionSet(data, getQuestionID) {
 
 	var items = [];
 	var endResultItems = [];
+	var endAnnotationItems = [];
 	data.questions.forEach(function(question) {
 		// put all the objects returned by processQuestion in to the items array
 
@@ -549,7 +554,10 @@ function processQuestionSet(data, getQuestionID) {
 
 		push.apply(items, processedQuestion.items);
 		push.apply(endResultItems, processedQuestion.endResultItems);
+		push.apply(endAnnotationItems, processedQuestion.endAnnotationItems);
 	});
+
+	push.apply(items, endAnnotationItems);
 
 	var questionSetString = createQuestionSet(items, data.timeAppear);
 
