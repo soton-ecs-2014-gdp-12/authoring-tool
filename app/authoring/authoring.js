@@ -48,7 +48,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 		console.log(data);
 
-		// TODO: Rewind and play the video
+		document.getElementsByTagName('video')[0].currentTime = 0;
+		document.getElementsByTagName('video')[0].play();
 	};
 
 })
