@@ -3,5 +3,12 @@
 		<label>
 			Correct answer: <input type="text" name="mininput" ng-model="answerData.correctAnswer" required>
 		</label>
+		<div class="checkbox" role="checkbox">
+			<label>
+				<input type="checkbox" ng-model="answerData.ifIncorrectReturnToTime" />
+				If answered incorrectly return to
+			</label>
+		</div>
+		<shorttimepicker ng-model="answerData.returnToTime" millisecond-step="10"></shorttimepicker>
 	</div>
 </div>

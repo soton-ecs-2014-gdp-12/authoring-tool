@@ -107,9 +107,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .controller('questionOptionsBlockCtrl', function($scope) {
 	$scope.options = {
 		"questionCanBeSkipped": false,
-		"ifIncorrectReturnToTime": false,
 		"recordResponses": false,
-		"showResponseWhen": 'afterEach',
+		"showResponseWhen": 'afterEach'
 	};
 
 	$scope.$watch('options', function(newVal, oldVal) {
@@ -385,7 +384,9 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 .controller('textCtrl', function($scope) {
 	$scope.answerData = {
-		correctAnswer: ''
+		correctAnswer: '',
+		ifIncorrectReturnToTime: false,
+		returnToTime: new Date(0),
 	};
 
 	$scope.$watch('answerData', function(newVal, oldVal) {
