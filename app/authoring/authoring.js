@@ -394,33 +394,33 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 });
 
 
-function questionAnsweredIncorrectly(questionId, time) {
+function checkQuestion(questionId, time) {
 
-	var template = '{\
-		id: "incorrect-QUESTION_ID",\
-		type: "single",\
-		question: "Answer incorrect, do you want to review the video",\
-		options: [\
-			{\
-				name: "Yes"\
-			},\
-			{\
-				name: "No"\
-			}\
-		],\
-		action: function(questions, video) {\
-			var question = questions.get("QUESTION_ID");\
-			if (question.response !== question.correctAnswer) {\
-				video.setTime(TIME);\
-			}\
-		},\
-		condition: function(questions) {\
-			return questions.get("QUESTION_ID").isNotCorrect();\
-		}\
+	var template = '{\n\
+		id: "incorrect-QUESTION_ID",\n\
+		type: "single",\n\
+		question: "Answer incorrect, do you want to review the video",\n\
+		options: [\n\
+			{\n\
+				name: "Yes"\n\
+			},\n\
+			{\n\
+				name: "No"\n\
+			}\n\
+		],\n\
+		action: function(questions, video) {\n\
+			var question = questions.get("QUESTION_ID");\n\
+			if (question.response !== question.correctAnswer) {\n\
+				video.setTime(TIME);\n\
+			}\n\
+		},\n\
+		condition: function(questions) {\n\
+			return questions.get("QUESTION_ID").isNotCorrect();\n\
+		}\n\
 	}';
 
-	template.replace(/QUESTION_ID/g, questionId);
-	template.replace(/TIME/g, time);
+	template = template.replace(/QUESTION_ID/g, questionId);
+	template = template.replace(/TIME/g, time);
 
 	return template;
 }
@@ -484,7 +484,15 @@ function processQuestion(data, getQuestionID) {
 
 	var questionString = JSON.stringify(question, null, 4);
 
-	return [questionString];
+	var questionsToReturn = [questionString];
+
+	if (true) {
+		var checkQuestionString = checkQuestion(question.id, "0");
+
+		questionsToReturn.push(checkQuestionString);
+	}
+
+	return questionsToReturn;
 }
 
 function processQuestionSet(data, getQuestionID) {
