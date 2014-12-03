@@ -20,7 +20,14 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 
 	$scope.exportBtn = function() {
-		// TODO
+		var data = exportWebWorker($scope.data);
+
+		console.log(data);
+
+		var url = "data:text/json;charset=utf8," + encodeURIComponent(data);
+
+		window.open(url, "_blank");
+		window.focus();
 	};
 
 	$scope.previewBtn = function() {
