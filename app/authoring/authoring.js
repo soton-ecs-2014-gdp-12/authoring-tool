@@ -158,6 +158,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 	$scope.addQuestion = function() {
 		quizNo = quizNo + 1;
+		console.log($scope.questionSetData);
 		return $scope.questions.push({
 			questionId: quizNo,
 			name: 'Question ' + quizNo,
@@ -166,7 +167,12 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 
 	$scope.removeQuestion = function(toRemove) {
+		console.log("to remove:")
 		console.log(toRemove);
+
+		$scope.$parent.questionSetData.questions[toRemove.questionId] = null;
+
+		console.log($scope.$parent.questionSetData.questions);
 
 		var oldQuestions = $scope.questions;
 		var newQuestions = [];
@@ -314,6 +320,8 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 	};
 
 	$scope.$watch('questionData', function(newVal, oldVal) {
+		console.log($scope.$parent.questionSetData.questions);
+
 		$scope.$parent.questionSetData.questions[$scope.questionId] = newVal;
 	}, true); //note this is a deep watch and is slow
 })
@@ -494,6 +502,10 @@ function checkQuestion(questionId, time) {
 }
 
 function processQuestion(data, getQuestionID) {
+	if(data === null) {
+		return null;
+	}
+
 	var question = {};
 
 	var typeConversion = {
@@ -613,10 +625,11 @@ function processQuestionSet(data, getQuestionID) {
 		// put all the objects returned by processQuestion in to the items array
 
 		var processedQuestion = processQuestion(question, getQuestionID)
-
-		push.apply(items, processedQuestion.items);
-		push.apply(endResultItems, processedQuestion.endResultItems);
-		push.apply(endAnnotationItems, processedQuestion.endAnnotationItems);
+		if(processedQuestion !== null)  {
+			push.apply(items, processedQuestion.items);
+			push.apply(endResultItems, processedQuestion.endResultItems);
+			push.apply(endAnnotationItems, processedQuestion.endAnnotationItems);
+		}
 	});
 
 	push.apply(items, endAnnotationItems);
