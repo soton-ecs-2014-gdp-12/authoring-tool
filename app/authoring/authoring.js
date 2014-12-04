@@ -104,20 +104,22 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 .controller('SetAddCtrl',  function ($scope){
 	$scope.sets = [];
 
+	var setNumber = 0;
+
 	$scope.addQuestionSet = function() {
-		var newSetNo = $scope.sets.length;
-		$scope.sets.push({id: newSetNo, header: 'Question Set ' + (newSetNo + 1)});
+		setNumber++;
+		var newSetNo = setNumber;
+		$scope.sets.push({id: newSetNo, header: 'Question Set ' + setNumber});
 	};
 
 	$scope.removeQuestionSet = function(id) {
-		console.log("removing question with id " + id);
+		console.log("removing questionset with id " + id);
+		$scope.data.questionSet[id] = null;
 
 		var newSets = [];
 		for(var i = 0; i < $scope.sets.length; i++) {
 			if($scope.sets[i].id != id) {
 				newSets.push($scope.sets[i]);
-				newSets[newSets.length - 1].id = newSets.length - 1;
-				newSets[newSets.length - 1].header = 'Question Set ' + newSets.length;
 			}
 		}
 
@@ -616,6 +618,10 @@ function createQuestionSet(items, time) {
 }
 
 function processQuestionSet(data, getQuestionID) {
+	if(data === null) {
+		return null;
+	}
+
 	var push = [].push;
 
 	var items = [];
@@ -668,10 +674,10 @@ function exportWebWorker(data) {
 		var questionData = data.questionSet[index];
 
 		var processedQuestionSet = processQuestionSet(questionData, getQuestionID);
-
-		endResultItems.push.apply(endResultItems, processedQuestionSet.endResultItems);
-
-		annotationString += "annotation" + index + ": " + processedQuestionSet.questionSetString;
+		if(processedQuestionSet !== null) {
+			endResultItems.push.apply(endResultItems, processedQuestionSet.endResultItems);
+			annotationString += "annotation" + index + ": " + processedQuestionSet.questionSetString;
+		}
 	});
 
 	if (endResultItems.length > 0) {
