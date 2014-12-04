@@ -109,7 +109,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		$scope.sets.push({id: newSetNo, header: 'Question Set ' + (newSetNo + 1)});
 	};
 
-	$scope.removeQuestion = function(id) {
+	$scope.removeQuestionSet = function(id) {
 		console.log("removing question with id " + id);
 
 		var newSets = [];
@@ -219,7 +219,7 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		event.preventDefault();
 		event.stopPropagation();
 
-		$scope.$parent.removeQuestion($scope.questionSetId);
+		$scope.$parent.removeQuestionSet($scope.questionSetId);
 	}
 
 
