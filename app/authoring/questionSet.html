@@ -2,6 +2,9 @@
 	<accordion-group>
 		<accordion-heading>
 		   	{{heading}}
+			<div class="btn-group pull-right">
+				<button class="btn btn-default btn-sm" role="button" aria-label="Delete" type="button" ng-click="removeQuestionSet($event,'')"><span class="glyphicon glyphicon-remove"></span></button>
+			</div>
    		</accordion-heading>
 		<strong>Appear at:</strong>
 		<shorttimepicker ng-model="questionSetData.timeAppear" millisecond-step="10"></shorttimepicker>

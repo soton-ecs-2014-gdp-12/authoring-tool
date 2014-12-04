@@ -108,6 +108,23 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		var newSetNo = $scope.sets.length;
 		$scope.sets.push({id: newSetNo, header: 'Question Set ' + (newSetNo + 1)});
 	};
+
+	$scope.removeQuestionSet = function(event, toMove) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		var oldSets = $scope.$parent.$parent.sets;
+		var newSets = [];
+
+		for(var i = 0; i < oldSets.length; i++) {
+			if(oldSets[i].id != $scope.questionSetId) {
+				newSets.push(oldSets[i]);
+			}
+		}
+
+		$scope.$parent.$parent.$parent.sets = newSets;
+		console.log(newSets);
+	}
 })
 
 .directive('questionOptionsBlock', function(){
