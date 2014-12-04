@@ -109,21 +109,22 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		$scope.sets.push({id: newSetNo, header: 'Question Set ' + (newSetNo + 1)});
 	};
 
-	$scope.removeQuestionSet = function(event, toMove) {
-		event.preventDefault();
-		event.stopPropagation();
+	$scope.removeQuestion = function(id) {
+		console.log("removing question with id " + id);
 
-		var oldSets = $scope.$parent.$parent.sets;
 		var newSets = [];
-
-		for(var i = 0; i < oldSets.length; i++) {
-			if(oldSets[i].id != $scope.questionSetId) {
-				newSets.push(oldSets[i]);
+		for(var i = 0; i < $scope.sets.length; i++) {
+			if($scope.sets[i].id != id) {
+				newSets.push($scope.sets[i]);
+				newSets[newSets.length - 1].id = newSets.length - 1;
+				newSets[newSets.length - 1].header = 'Question Set ' + newSets.length;
 			}
 		}
 
-		$scope.$parent.$parent.$parent.sets = newSets;
+		$scope.sets = newSets;
 		console.log(newSets);
+
+
 	}
 })
 
@@ -210,6 +211,14 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		timeAppear: new Date(0),
 		questions: [],
 	};
+
+	$scope.removeQuestionSet = function(event, toMove) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		$scope.$parent.removeQuestion($scope.questionSetId);
+	}
+
 
 	$scope.$watch('questionSetData', function(newVal, oldVal) {
 		$scope.$parent.data.questionSet[$scope.questionSetId] = newVal;
