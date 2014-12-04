@@ -154,28 +154,31 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 
 .controller('SectionAddCtrl',  function ($scope){
 	$scope.questions = [];
-
-	var pollNo = 0;
 	var quizNo = 0;
-
-	$scope.addPoll = function() {
-		pollNo = pollNo + 1;
-
-		return $scope.questions.push({
-			questionId: $scope.questions.length,
-			name: 'Poll ' + pollNo,
-			type: 'poll',
-		});
-	};
 
 	$scope.addQuestion = function() {
 		quizNo = quizNo + 1;
 		return $scope.questions.push({
-			questionId: $scope.questions.length,
+			questionId: quizNo,
 			name: 'Question ' + quizNo,
 			type: 'quiz',
 		});
 	};
+
+	$scope.removeQuestion = function(toRemove) {
+		console.log(toRemove);
+
+		var oldQuestions = $scope.questions;
+		var newQuestions = [];
+		var toRemoveIndex = oldQuestions.getIndexByVal(toRemove);
+		for(var i = 0; i < oldQuestions.length; i++) {
+			if(i != toRemoveIndex) {
+				newQuestions.push(oldQuestions[i]);
+			}
+		}
+		$scope.questions = newQuestions;
+
+	}
 
 	Array.prototype.swap = function (x,y) {
 		var b = this[x];
@@ -286,6 +289,25 @@ angular.module('authoringTool.authoring', ['ngRoute'])
 		}
 		console.dir($scope.$parent.questions);
 	};
+
+	$scope.moveQuestionDown = function(event, toMove) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		var index = $scope.$parent.questions.getIndexByVal(toMove);
+		console.dir(index);
+		if (index < $scope.$parent.questions.length - 1){
+			$scope.$parent.questions.swap(index, index + 1);
+		}
+		console.dir($scope.$parent.questions);
+	};
+
+	$scope.removeQuestion = function(event, toRemove) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		$scope.$parent.removeQuestion(toRemove);
+	}
 
 	this.getType = function() {
 		return $scope.type;
