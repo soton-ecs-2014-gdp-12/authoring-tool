@@ -663,6 +663,8 @@ function exportWebWorker(data) {
 
 	var annotationString = "{\n";
 
+	var firstAnnotation = true;
+
 	var questionIDCounter = 0;
 	var getQuestionID = function() {
 		return "" + questionIDCounter++;
@@ -675,6 +677,12 @@ function exportWebWorker(data) {
 
 		var processedQuestionSet = processQuestionSet(questionData, getQuestionID);
 		if(processedQuestionSet !== null) {
+			if(firstAnnotation) {
+				firstAnnotation = false;
+			}else{
+				annotationString += ",";
+			}
+
 			endResultItems.push.apply(endResultItems, processedQuestionSet.endResultItems);
 			annotationString += "annotation" + index + ": " + processedQuestionSet.questionSetString;
 		}
