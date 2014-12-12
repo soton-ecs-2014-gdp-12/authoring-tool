@@ -18,3 +18,12 @@ $ bower link videogular-questions
 ```
 
 Important: This will not work without doing this.
+
+Configuring an Apache webserver to run this application
+=======================================================
+
+AngularJS files are JavaScript and therefore can be run on a normal Apache webserver.
+
+To install this you must clone the repository to a location served by apache and then install the dependencies by running `npm install`
+
+Once this has been performed the application will be able to be used.
