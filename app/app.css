@@ -1,3 +1,8 @@
+.navbar-author {
+    color: #FFFFFF; 
+    background-color: #505A5A;
+}
+
 /* Layout */
 
 /*@top-padding: 55px; */
@@ -84,7 +89,7 @@ videogular div.my-layer {
 
 .emptyMessage {
 	text-align: center;
-	color: #777;
+	color: #005084;
 }
 
 .accordion-toggle:focus {
